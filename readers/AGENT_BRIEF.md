@@ -6,10 +6,14 @@ against the published adventure. Work only on your assigned scope.
 ## Read first
 1. `PROJECT_NOTES.md` — sections 2 (labels), 4 (confirmed corrections), 4a,
    5 (user decisions), 6 (Route Map flags). These are settled context.
-2. `campaign/route_map_campaign_data.md` — the **only** campaign-side source
-   available. It is a *summary* of the real campaign documents (Future
-   Possible, Items and Treasure, Strahd's Brides, Prep IV), which are not in
-   this repo yet. Absence of a detail there does not mean the campaign lacks it.
+2. **Campaign documents (uploaded 2026-09-24, text versions in `campaign/text/`)**:
+   `Curse_of_Strahd_Future_Possible.md` (the route and every later location),
+   `Curse_of_Strahd_Items_and_Treasure.md` (the item cards and gold),
+   `Curse_of_Strahd_Session_Prep_IV_Into_Vallaki.md`, `Strahds_Brides_DM_Sheet.md`,
+   `Barovia_NPC_Cards.md`, `Strahd_Item_Cards_blank.md`, `Barovia_Player_Handouts.md`,
+   `Offalias_Attack_Combat_Sheet.md`. Cite them as CURRENT CAMPAIGN VERSION
+   (document + section). Still missing: the Strahd DM sheet and the reader 1–3
+   reports. `campaign/route_map_campaign_data.md` is a secondary summary.
 3. Your book pack in `book/` (published text with page numbers). Use Grep and
    Read with offsets; you don't need to hold the whole pack in memory at once.
 
@@ -18,11 +22,19 @@ against the published adventure. Work only on your assigned scope.
   when the campaign changed it on purpose (the three brides' roles, our 67 item
   cards, Madam Eva's message after each Tarokka item, difficulty levels,
   Ireena travelling with the party, the hags' storyline, etc.).
+- **Homebrew NPCs:** the DM riffs at the table, so some NPCs are homebrew and
+  don't exist in the book (e.g. Miranda, Viktor Ivanovich, Ethradir's mother).
+  An NPC, relationship or scene absent from the book is CURRENT CAMPAIGN
+  VERSION (homebrew) — never an error or CONFLICT for that reason alone. Flag
+  it only if it contradicts a book fact the campaign otherwise keeps. List the
+  homebrew NPCs you meet in your report under "Homebrew NPCs in this scope".
 - Never resolve anything listed in PROJECT_NOTES §5 (D-1…D-7). You may add
   book facts that inform it.
 - Book treasure missing from our cards is a **possible omission** (D-6), never
   an error, never "add this".
-- Every campaign-side comparison you make is **PROVISIONAL** (Route Map only).
+- A finding checked against the campaign documents above is normal. Mark a
+  finding **PROVISIONAL** only if it depends on something not uploaded yet
+  (the Strahd DM sheet, reader 1–3 reports) or on the Route Map alone.
 - Paraphrase the book in your own words. No read-aloud text copied; quotes at
   most one short sentence. Always cite `Ch N, area Kxx, p. NN`.
 - Do not invent campaign content. Improvements must be grounded in the book.
@@ -59,7 +71,7 @@ one-fifth to one-quarter of the book pack's length.
 
 ```
 # Reader <id> — <scope> — audit report
-Status: PROVISIONAL — campaign side checked against the Route Map summary only.
+Status: campaign side checked against the documents in campaign/text/ (list which ones you used).
 
 ## Summary                (counts per label; the 3–5 findings that matter most)
 ## Findings

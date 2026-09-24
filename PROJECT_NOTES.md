@@ -10,21 +10,23 @@ Last updated: 2026-09-24 (cloud session, branch `claude/strahd-campaign-readers-
 
 ## 1. Where the material lives
 
-| Material | Location | Available to the cloud session? |
+| Material | Location | Status |
 |---|---|---|
-| Campaign documents: Session Prep IV, Future Possible, Items and Treasure (67 cards), Strahd's Brides, Strahd DM sheet, Item card maker | The original claude.ai conversation / project | **No — not yet uploaded here** |
-| Reader reports 1–3 (main storyline, countryside, Vallaki) | The original conversation | **No** (findings summarised in §4 from the user's brief) |
-| Campaign maps (Patreon, with logos and watermarks), wagon picture, night-street picture | The original conversation / user's files | **No** |
-| Ledger handout (earlier version) | The original conversation | **No** |
-| Barovia Route Map (DM reference artifact, derived from Future Possible) | https://claude.ai/artifact/GwdLQDdUTFKqvJFPuDfXvN | Yes — read on 2026-09-24 |
-| Shared transcript of the original conversation | https://claude.ai/share/7147c102-e93c-48c8-985f-d41c19f6cf08 | **No** — blocked by Cloudflare from the container |
-| Published Curse of Strahd text (2016) | 5etools data mirror (the data behind https://5e.tools/adventure.html#cos) → `python3 tools/extract_book.py` → `book/` | Yes (git-ignored, copyrighted) |
-| Ravenloft: The Horrors Within (2026) — Saidra d'Honaire, Dementlieu | Same tool → `book/saidra_rhw.md` | Yes |
+| Session Prep IV (docx) | repo root; text in `campaign/text/` | **Uploaded 2026-09-24** (15,402 words) |
+| Future Possible (docx) | repo root; text in `campaign/text/` | **Uploaded** (8,255 words) |
+| Items and Treasure (docx) | repo root; text in `campaign/text/` | **Uploaded** (2,545 words) |
+| Strahd's Brides DM sheet, NPC cards, item cards, player handouts, Offalia combat sheet (PDF) | repo root; text in `campaign/text/` | **Uploaded** |
+| Strahd DM sheet | — | **Not uploaded yet** |
+| Reader reports 1–3 and their skill notes | — | **Not uploaded yet** (only in the original environment) |
+| Ledger handout (earlier version) | — | Lost; being rebuilt from Prep IV Scene 1 (task C) |
+| Maps and pictures | `Maps/`; inventory in `maps/INVENTORY.md` | **Uploaded** + 3 book maps fetched (Vistani Camp, Castle main floor, Winery) |
+| Barovia Route Map (DM reference artifact) | https://claude.ai/artifact/GwdLQDdUTFKqvJFPuDfXvN; snapshot in `campaign/` | Secondary summary |
+| Shared transcript of the original conversation | https://claude.ai/share/7147c102-e93c-48c8-985f-d41c19f6cf08 | Blocked by Cloudflare from the container; the user pasted the key parts |
+| Published Curse of Strahd text (2016) | 5etools data mirror (the data behind https://5e.tools/adventure.html#cos) → `python3 tools/extract_book.py` → `book/` | Git-ignored (copyrighted) |
+| Ravenloft: The Horrors Within (2026) — Saidra d'Honaire, Barovia entry | Same tool → `book/saidra_rhw.md`, `book/rhw_barovia.md` | Git-ignored |
 
-**To unblock everything else:** upload the campaign files to this GitHub repo
-(web UI → *Add file → Upload files*; documents into `campaign/`, maps and
-pictures into `maps/source/`, reader reports into `readers/`). Google Drive
-works for text documents but not for map images.
+**Still wanted:** the Strahd DM sheet and the reader 1–3 reports (with their
+skill notes). Upload them to the repo root like the other files.
 
 ---
 
@@ -42,6 +44,14 @@ works for text documents but not for map images.
 A difference is **not** an error when the campaign changed it on purpose
 (brides' roles, item cards, Madam Eva's messages after each Tarokka item,
 difficulty levels, and so on).
+
+**Homebrew NPCs (user, 2026-09-24):** the DM riffs at the table, so some
+characters are homebrew NPCs who don't exist in the book (e.g. Miranda,
+Viktor Ivanovich, Ethradir's mother). An NPC, relationship or scene that is
+absent from the book is **CURRENT CAMPAIGN VERSION (homebrew)** — never an
+error, never a CONFLICT for that reason alone. Only flag a homebrew NPC when it
+contradicts a book fact the campaign otherwise keeps (then CONFLICT), and
+record homebrew NPCs in the skill as `[CAMPAIGN]` with the tag *homebrew*.
 
 ---
 

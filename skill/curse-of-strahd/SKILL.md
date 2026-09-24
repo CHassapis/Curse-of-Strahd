@@ -26,7 +26,7 @@ description: DM knowledge base for our Curse of Strahd campaign (party Fedra, Ba
 | Label | Meaning |
 |---|---|
 | `[BOOK]` | Published adventure fact (Curse of Strahd, 2016; or Ravenloft: The Horrors Within, 2026 where stated). |
-| `[CAMPAIGN]` | Our campaign's version, which overrides the book at our table. |
+| `[CAMPAIGN]` | Our campaign's version, which overrides the book at our table. Tagged *homebrew* when the NPC, place or scene doesn't exist in the book (the DM riffs at the table — homebrew is never an error). |
 | `[PLAYER]` | Safe to tell or show the players. |
 | `[DM]` | DM-only: secrets, traps, secret doors, true identities, stat details. |
 | `[OPEN]` | Unresolved decision — see `references/decisions.md`. |
