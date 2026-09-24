@@ -265,6 +265,11 @@ def median_ring_color(img: Image.Image, rect, ring: int = 8):
     return (int(statistics.median(rs)), int(statistics.median(gs)), int(statistics.median(bs)))
 
 
+REDACT_FILL_PAD = 2  # px: fill a touch larger than the requested rect so a
+                      # hand-eyeballed rectangle can never leave a hairline
+                      # of secret content visible at its edge.
+
+
 def apply_redactions(img: Image.Image, rects: list) -> Image.Image:
     if not rects:
         return img
@@ -273,7 +278,11 @@ def apply_redactions(img: Image.Image, rects: list) -> Image.Image:
     for rect in rects:
         color = median_ring_color(img, rect)
         x, y, w, h = rect
-        x0, y0, x1, y1 = clip_box(x, y, x + w, y + h, img.width, img.height)
+        x0, y0, x1, y1 = clip_box(
+            x - REDACT_FILL_PAD, y - REDACT_FILL_PAD,
+            x + w + REDACT_FILL_PAD, y + h + REDACT_FILL_PAD,
+            img.width, img.height,
+        )
         if x1 > x0 and y1 > y0:
             draw.rectangle([x0, y0, x1 - 1, y1 - 1], fill=color)
     return out
@@ -333,12 +342,13 @@ def place_band(rows, content_x0: float, top_y: float, content_w: float, pad: flo
     return placements
 
 
-def classify_and_scale(keep_rects: list, base_scale: float):
+def classify_and_scale(keep_rects: list, base_scale: float, content_w: float):
     """Splits kept-element rectangles into a header group (wide items, e.g.
     title banners / scale notes) and a footer group (squarer items, e.g.
     signature / compass / logo / watermark), and computes each one's print
     size: at least MIN_KEEP_HEIGHT_MM tall, using the map's own scale when
-    that is already bigger, capped at MAX_KEEP_UPSCALE."""
+    that is already bigger, capped at MAX_KEEP_UPSCALE and never wider than
+    the printable area (a single item can never overflow the page)."""
     header_src, header_sizes = [], []
     footer_src, footer_sizes = [], []
     floor_px = mm_to_px(MIN_KEEP_HEIGHT_MM)
@@ -348,6 +358,8 @@ def classify_and_scale(keep_rects: list, base_scale: float):
             continue
         s = max(base_scale, floor_px / h)
         s = min(s, MAX_KEEP_UPSCALE)
+        if w * s > content_w:
+            s = content_w / w
         pw, ph = w * s, h * s
         if w / h >= KEEP_HEADER_ASPECT:
             header_src.append(rect); header_sizes.append((pw, ph))
@@ -368,7 +380,7 @@ def solve_layout(orientation: str, panel_w: float, panel_h: float, keep_rects: l
         return None
 
     base_scale = min(content_w / panel_w, content_h / panel_h)
-    (h_src, h_sizes), (f_src, f_sizes) = classify_and_scale(keep_rects, base_scale)
+    (h_src, h_sizes), (f_src, f_sizes) = classify_and_scale(keep_rects, base_scale, content_w)
     pad = mm_to_px(KEEP_PAD_MM)
     h_rows, h_band_h = pack_band(h_sizes, content_w, pad)
     f_rows, f_band_h = pack_band(f_sizes, content_w, pad)
