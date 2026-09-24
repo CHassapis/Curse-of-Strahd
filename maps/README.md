@@ -39,7 +39,7 @@ order, set, location, level, title, dm_file, player_file, redact, crop, keep, no
 | `title` | The floor/picture name, e.g. `Bone Mill`. |
 | `dm_file` | Image file for the DM page, relative to `--source`. |
 | `player_file` | Image file for the player page, relative to `--source`. |
-| `redact` | Optional. `x,y,w,h` rectangles (source-image pixels), separated by `;`. Applied to `dm_file` to produce a player page when no clean `player_file` exists. Each rectangle is filled with the median colour of a thin ring of pixels around it. |
+| `redact` | Optional. `x,y,w,h` rectangles (source-image pixels), separated by `;`. Applied to the player page's source: `player_file` if given (to mask anything the publisher's "player version" still shows, such as a hidden room or a trap), otherwise `dm_file` (to build a player page from the DM sheet). Never applied to DM pages. Each rectangle is filled with the median colour of a thin ring of pixels around it. |
 | `crop` | Optional. One `x,y,w,h` rectangle (source-image pixels): the single floor panel to print on *this* page, when several floors share one sheet image. Empty = use the whole image. |
 | `keep` | Optional. `x,y,w,h` rectangles (source-image pixels), separated by `;`: sheet elements outside the `crop` panel to carry onto the page anyway (title, compass rose, scale note, cartographer's signature, logos, Patreon watermarks). See "Multi-floor sheets" below. |
 | `notes` | Free text, not printed. For your own reference. |

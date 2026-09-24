@@ -48,10 +48,7 @@ MIN_EFFECTIVE_DPI = 150.0
 MAX_UPSCALE = 2.0
 
 # "keep" (carried-over sheet elements such as title/compass/signature/logo)
-MIN_KEEP_HEIGHT_MM = 9.0     # never render a kept element smaller than this
-MAX_KEEP_UPSCALE = 6.0       # ...but don't blow tiny logos up absurdly either
-KEEP_PAD_MM = 3.0
-KEEP_HEADER_ASPECT = 1.8     # wide items (title banners, scale notes) -> header
+KEEP_HEADER_ASPECT = 1.8     # wide kept items (titles, scale strips) go in a row above/below the panel
                               # squarer items (signature, compass, logo) -> footer
 
 DIVIDER_TITLE = "To show the players"
@@ -300,116 +297,127 @@ def page_px(orientation: str):
     return mm_to_px(w_mm), mm_to_px(h_mm)
 
 
-def pack_band(sized_items, content_w: float, pad: float):
-    """sized_items: [(w,h), ...] already scaled to their final print size.
-
-    Shelf-packs them left to right, wrapping to a new row when a row would
-    exceed content_w. Returns (rows, band_h) where rows is a list of
-    (items[(w,h)...], row_h).
-    """
-    if not sized_items:
-        return [], 0.0
-    rows = []
-    cur, cur_w, row_h = [], 0.0, 0.0
-    for w, h in sized_items:
-        add_w = w if not cur else pad + w
-        if cur and cur_w + add_w > content_w:
-            rows.append((cur, row_h))
-            cur, cur_w, row_h = [], 0.0, 0.0
-            add_w = w
-        cur.append((w, h))
-        cur_w += add_w
-        row_h = max(row_h, h)
-    if cur:
-        rows.append((cur, row_h))
-    band_h = sum(rh for _, rh in rows) + pad * (len(rows) + 1)
-    return rows, band_h
+SIDE_MAX_FRAC = 0.25      # a side-column element is at most this share of the panel's width
+BAND_MAX_FRAC = 0.22      # a header/footer row is at most this share of the panel's height
+COMPOSITE_PAD_FRAC = 0.02 # gap between the panel and kept elements, as a share of the panel's longer side
 
 
-def place_band(rows, content_x0: float, top_y: float, content_w: float, pad: float):
-    """Returns a list of (x, y, w, h) placements, one per item, row by row,
-    each row horizontally centered."""
-    placements = []
-    y = top_y + pad
-    for items, row_h in rows:
-        total_w = sum(w for w, h in items) + pad * (len(items) - 1)
-        x = content_x0 + (content_w - total_w) / 2.0
-        for w, h in items:
-            iy = y + (row_h - h) / 2.0
-            placements.append((x, iy, w, h))
-            x += w + pad
-        y += row_h + pad
-    return placements
+def _fit(w: float, h: float, max_w: float, max_h: float) -> float:
+    """Largest scale <= 1 that fits (w, h) inside (max_w, max_h)."""
+    return min(1.0, max_w / w if w else 1.0, max_h / h if h else 1.0)
 
 
-def classify_and_scale(keep_rects: list, base_scale: float, content_w: float):
-    """Splits kept-element rectangles into a header group (wide items, e.g.
-    title banners / scale notes) and a footer group (squarer items, e.g.
-    signature / compass / logo / watermark), and computes each one's print
-    size: at least MIN_KEEP_HEIGHT_MM tall, using the map's own scale when
-    that is already bigger, capped at MAX_KEEP_UPSCALE and never wider than
-    the printable area (a single item can never overflow the page)."""
-    header_src, header_sizes = [], []
-    footer_src, footer_sizes = [], []
-    floor_px = mm_to_px(MIN_KEEP_HEIGHT_MM)
+def build_composite(panel_w: float, panel_h: float, keep_rects: list, panel_cy: float):
+    """Lays the floor panel and its kept sheet elements out as a small
+    'mini sheet', in source pixels, so everything keeps the sheet's own
+    relative scale instead of being blown up to the map's print scale.
+
+    Wide elements (titles, scale strips) become a row above the panel if they
+    sat above it on the sheet, otherwise a row below it. Squarer elements
+    (compass, logo, signature, watermark) stack in a column to the right.
+    Kept elements are only ever scaled down (capped by SIDE_MAX_FRAC and
+    BAND_MAX_FRAC), never up, so the map always dominates the page.
+
+    Returns (comp_w, comp_h, panel_xy, placements) where placements is a list
+    of (rect, (x, y, w, h)) in composite pixels."""
+    pad = COMPOSITE_PAD_FRAC * max(panel_w, panel_h)
+    top, bottom, side = [], [], []
     for rect in keep_rects:
         x, y, w, h = rect
         if w <= 0 or h <= 0:
             continue
-        s = max(base_scale, floor_px / h)
-        s = min(s, MAX_KEEP_UPSCALE)
-        if w * s > content_w:
-            s = content_w / w
-        pw, ph = w * s, h * s
         if w / h >= KEEP_HEADER_ASPECT:
-            header_src.append(rect); header_sizes.append((pw, ph))
+            (top if y + h / 2.0 < panel_cy else bottom).append(rect)
         else:
-            footer_src.append(rect); footer_sizes.append((pw, ph))
-    return (header_src, header_sizes), (footer_src, footer_sizes)
+            side.append(rect)
+
+    # Side column: each item capped to SIDE_MAX_FRAC of the panel width, and
+    # the column as a whole no taller than the panel.
+    side_items = []
+    for rect in side:
+        _, _, w, h = rect
+        k = _fit(w, h, SIDE_MAX_FRAC * panel_w, panel_h)
+        side_items.append((rect, w * k, h * k))
+    col_h = sum(h for _, _, h in side_items) + pad * max(0, len(side_items) - 1)
+    if col_h > panel_h and col_h > 0:
+        k = panel_h / col_h
+        side_items = [(r, w * k, h * k) for r, w, h in side_items]
+        col_h = panel_h
+    col_w = max((w for _, w, _ in side_items), default=0.0)
+    body_w = panel_w + (pad + col_w if side_items else 0.0)
+
+    def row(items):
+        """One row of wide items, side by side, fitted to body_w and to
+        BAND_MAX_FRAC of the panel height."""
+        sized = [(r, r[2], r[3]) for r in items]
+        if not sized:
+            return [], 0.0
+        tot_w = sum(w for _, w, _ in sized) + pad * (len(sized) - 1)
+        row_h = max(h for _, _, h in sized)
+        k = _fit(tot_w, row_h, body_w, BAND_MAX_FRAC * panel_h)
+        return [(r, w * k, h * k) for r, w, h in sized], row_h * k
+
+    top_items, top_h = row(sorted(top, key=lambda r: r[0]))
+    bot_items, bot_h = row(sorted(bottom, key=lambda r: r[0]))
+
+    comp_w = body_w
+    y = 0.0
+    placements = []
+
+    def place_row(items, y0):
+        tot = sum(w for _, w, _ in items) + pad * (len(items) - 1)
+        x = (comp_w - tot) / 2.0
+        for r, w, h in items:
+            placements.append((r, (x, y0, w, h)))
+            x += w + pad
+
+    if top_items:
+        place_row(top_items, y)
+        y += top_h + pad
+    panel_xy = (0.0, y)
+    cy = y
+    for r, w, h in side_items:
+        placements.append((r, (panel_w + pad + (col_w - w) / 2.0, cy, w, h)))
+        cy += h + pad
+    y += max(panel_h, col_h)
+    if bot_items:
+        y += pad
+        place_row(bot_items, y)
+        y += bot_h
+    return comp_w, y, panel_xy, placements
 
 
 def solve_layout(orientation: str, panel_w: float, panel_h: float, keep_rects: list,
-                  margin_mm: float, captions: bool):
+                  margin_mm: float, captions: bool, panel_cy: float = 0.0):
     pw, ph = page_px(orientation)
     margin = mm_to_px(margin_mm)
     cap_h = mm_to_px(CAPTION_HEIGHT_MM) if captions else 0.0
-    content_x0 = margin
     content_w = pw - 2 * margin
     content_h = ph - 2 * margin - cap_h
     if content_w <= 1 or content_h <= 1 or panel_w <= 0 or panel_h <= 0:
         return None
 
-    base_scale = min(content_w / panel_w, content_h / panel_h)
-    (h_src, h_sizes), (f_src, f_sizes) = classify_and_scale(keep_rects, base_scale, content_w)
-    pad = mm_to_px(KEEP_PAD_MM)
-    h_rows, h_band_h = pack_band(h_sizes, content_w, pad)
-    f_rows, f_band_h = pack_band(f_sizes, content_w, pad)
+    comp_w, comp_h, (pan_x, pan_y), placements = build_composite(panel_w, panel_h, keep_rects, panel_cy)
+    scale = min(content_w / comp_w, content_h / comp_h)
+    ox = margin + (content_w - comp_w * scale) / 2.0
+    oy = margin + (content_h - comp_h * scale) / 2.0
 
-    panel_area_h = content_h - h_band_h - f_band_h
-    if panel_area_h <= 1:
-        return None
+    def to_page(x, y, w, h):
+        return (ox + x * scale, oy + y * scale, w * scale, h * scale)
 
-    panel_scale = min(content_w / panel_w, panel_area_h / panel_h)
-    placed_w, placed_h = panel_w * panel_scale, panel_h * panel_scale
-    panel_area_top = margin + h_band_h
-    panel_x = content_x0 + (content_w - placed_w) / 2.0
-    panel_y = panel_area_top + (panel_area_h - placed_h) / 2.0
-    footer_band_top = panel_area_top + panel_area_h
-
-    header_dest = list(zip(h_src, place_band(h_rows, content_x0, margin, content_w, pad)))
-    footer_dest = list(zip(f_src, place_band(f_rows, content_x0, footer_band_top, content_w, pad)))
     caption_box = (margin, ph - margin - cap_h, pw - margin, ph - margin) if captions else None
-
     return dict(
-        orientation=orientation, page_w=pw, page_h=ph, panel_scale=panel_scale,
-        panel_box=(panel_x, panel_y, placed_w, placed_h),
-        header=header_dest, footer=footer_dest, caption_box=caption_box,
+        orientation=orientation, page_w=pw, page_h=ph, panel_scale=scale,
+        panel_box=to_page(pan_x, pan_y, panel_w, panel_h),
+        kept=[(r, to_page(*box)) for r, box in placements],
+        caption_box=caption_box,
     )
 
 
-def choose_layout(panel_w: float, panel_h: float, keep_rects: list, margin_mm: float, captions: bool):
-    a = solve_layout("portrait", panel_w, panel_h, keep_rects, margin_mm, captions)
-    b = solve_layout("landscape", panel_w, panel_h, keep_rects, margin_mm, captions)
+def choose_layout(panel_w: float, panel_h: float, keep_rects: list, margin_mm: float, captions: bool,
+                  panel_cy: float = 0.0):
+    a = solve_layout("portrait", panel_w, panel_h, keep_rects, margin_mm, captions, panel_cy)
+    b = solve_layout("landscape", panel_w, panel_h, keep_rects, margin_mm, captions, panel_cy)
     cands = [c for c in (a, b) if c]
     if not cands:
         return None
@@ -507,7 +515,9 @@ def resolve_source(row: ManifestRow, which: str, source_dir: Path):
     """Returns (path_or_None, is_redacted, reason_if_none)."""
     if which == "player":
         if row.player_file:
-            return source_dir / row.player_file, False, None
+            # redact also masks leftovers on a "clean" player file (e.g. a hidden
+            # room the publisher's player version still draws)
+            return source_dir / row.player_file, bool(row.redact), None
         if row.dm_file and row.redact:
             return source_dir / row.dm_file, True, None
         return None, False, "no player_file and no redact rectangles"
@@ -628,7 +638,7 @@ def compute_layout_for_spec(spec: PageSpec, margin_mm: float, captions: bool):
     panel_w, panel_h = max(1, x1 - x0), max(1, y1 - y0)
     keep_rects = _resolved_keep_rects(spec.row, W, H, warnings)
 
-    layout = choose_layout(panel_w, panel_h, keep_rects, margin_mm, captions)
+    layout = choose_layout(panel_w, panel_h, keep_rects, margin_mm, captions, panel_cy=(y0 + y1) / 2.0)
     if layout is None:
         warnings.append(
             f"'{spec.row.title}': margin + kept elements leave no room for the map panel on an A4 page - "
@@ -665,12 +675,11 @@ def render_page(spec: PageSpec, info: dict, captions: bool, page_no: int, total_
     panel_resized = panel_src.resize((max(1, round(pw2)), max(1, round(ph2))), Image.LANCZOS)
     canvas.paste(panel_resized, (round(px), round(py)))
 
-    for band in ("header", "footer"):
-        for rect, (dx, dy, dw, dh) in layout[band]:
-            kx, ky, kw, kh = rect
-            crop_img = img.crop((kx, ky, kx + kw, ky + kh))
-            resized = crop_img.resize((max(1, round(dw)), max(1, round(dh))), Image.LANCZOS)
-            canvas.paste(resized, (round(dx), round(dy)))
+    for rect, (dx, dy, dw, dh) in layout["kept"]:
+        kx, ky, kw, kh = rect
+        crop_img = img.crop((kx, ky, kx + kw, ky + kh))
+        resized = crop_img.resize((max(1, round(dw)), max(1, round(dh))), Image.LANCZOS)
+        canvas.paste(resized, (round(dx), round(dy)))
 
     if captions and layout["caption_box"]:
         draw = ImageDraw.Draw(canvas)
@@ -1064,13 +1073,13 @@ def run_self_test() -> bool:
         for s in floor_specs:
             info, _ = compute_layout_for_spec(s, DEFAULT_MARGIN_MM, True)
             layout = info["layout"]
-            assert len(layout["header"]) == 1, "expected the wide title rect in the header band"
-            assert len(layout["footer"]) == 1, "expected the squarer signature rect in the footer band"
+            assert len(layout["kept"]) == 2, "expected the title and the signature to be carried onto the page"
             px, py, pw_, ph_ = layout["panel_box"]
-            _, (hx, hy, hw, hh) = layout["header"][0]
-            _, (fx, fy, fw, fh) = layout["footer"][0]
-            assert hy + hh <= py + 0.5, "header band overlaps the map panel"
-            assert fy >= py + ph_ - 0.5, "footer band overlaps the map panel"
+            for _, (kx, ky, kw, kh) in layout["kept"]:
+                overlap_w = min(px + pw_, kx + kw) - max(px, kx)
+                overlap_h = min(py + ph_, ky + kh) - max(py, ky)
+                assert overlap_w <= 0.5 or overlap_h <= 0.5, "a kept element overlaps the map panel"
+                assert kw * kh < pw_ * ph_, "a kept element is bigger than the map panel"
             # confirm the correct 1/3 slice of the sheet was used as the panel (not the whole sheet)
             assert info["panel_size"] == (SHEET_W, FLOOR_H)
 

@@ -1,0 +1,35 @@
+order,set,location,level,title,dm_file,player_file,redact,crop,keep,notes
+100,map,Old Bonegrinder,Overview,Old Bonegrinder — side elevation,072-019.webp,073-cos601.webp,,"66,68,910,1518",,Prep IV Scene 1. Title/compass/signature are inside this panel.
+110,map,Old Bonegrinder,O1,Old Bonegrinder — O1 Ground Floor,072-019.webp,073-cos601.webp,,"980,830,665,752","160,1260,740,200;90,110,260,330;70,1500,905,85",
+120,map,Old Bonegrinder,O2,Old Bonegrinder — O2 Bone Mill,072-019.webp,073-cos601.webp,,"1652,830,681,752","160,1260,740,200;90,110,260,330;70,1500,905,85",
+130,map,Old Bonegrinder,O3,Old Bonegrinder — O3 Bedroom,072-019.webp,073-cos601.webp,,"980,70,665,752","160,1260,740,200;90,110,260,330;70,1500,905,85",DM version shows a trapdoor (T)
+140,map,Old Bonegrinder,O4,Old Bonegrinder — O4 Domed Attic,072-019.webp,073-cos601.webp,,"1652,70,681,752","160,1260,740,200;90,110,260,330;70,1500,905,85",DM version shows a trapdoor (T)
+200,map,The road,Road,The road — forest track,,e4bpvc4ckk161.jpg,,,,Prep IV Scene 2 (Strahd on the road). thedungeonmadame Patreon watermark kept.
+300,map,Vallaki,Town,Vallaki (Area N),047-013.webp,048-cos05-02-player.webp,,,,Prep IV Scenes 3 onward
+400,map,Blue Water Inn,Attic,Blue Water Inn — Attic/Roof,050-014.webp,051-cos501.webp,,"66,70,2268,1093","70,3140,2260,95",Prep IV Scene 4
+410,map,Blue Water Inn,Upper,Blue Water Inn — Upper Floor,050-014.webp,051-cos501.webp,,"66,1167,2268,1034","150,120,780,260;150,440,330,380;70,3140,2260,95",
+420,map,Blue Water Inn,Ground,Blue Water Inn — Ground Floor,050-014.webp,051-cos501.webp,,"66,2206,2268,1054","150,120,780,260;150,440,330,380",
+430,map,Blue Water Inn (battle map),Attic,Blue Water Inn battle map — Attic,,lj03inap9kp61.jpg,,"180,460,560,980","3580,3200,440,600",Battle map; badge logo carried onto every page
+440,map,Blue Water Inn (battle map),First floor,Blue Water Inn battle map — First Floor,,lj03inap9kp61.jpg,,"880,180,2600,1540","3580,3200,440,600",
+450,map,Blue Water Inn (battle map),Ground floor,Blue Water Inn battle map — Ground Floor,,lj03inap9kp61.jpg,,"0,1800,4096,2022",,Badge is inside this crop
+500,map,Vallaki street,Street,Street — the Banderhobb chase,,3ae824d5fd4cc5489913b9fdca0ed162.jpg,,,,Prep IV Scene 5 chase
+600,map,Burgomaster's Mansion,Attic,Burgomaster's Mansion — Attic/Roof,055-015.webp,056-cos502.webp,,"66,70,2268,1127","70,3140,2260,95",
+610,map,Burgomaster's Mansion,Upper,Burgomaster's Mansion — Upper Floor,055-015.webp,056-cos502.webp,,"66,1202,2268,1014","650,90,1100,230;150,170,330,400;70,3140,2260,95",
+620,map,Burgomaster's Mansion,Ground,Burgomaster's Mansion — Ground Floor,055-015.webp,056-cos502.webp,,"66,2220,2268,1042","650,90,1100,230;150,170,330,400",
+700,map,Wachterhaus,Upper,Wachterhaus — Upper Floor,058-016.webp,059-cos503.webp,,"66,70,2268,1202","70,3140,2260,95",
+710,map,Wachterhaus,Ground,Wachterhaus — Ground Floor,058-016.webp,059-cos503.webp,,"66,1275,2268,1056","850,90,700,230;150,170,330,400;70,3140,2260,95",
+720,map,Wachterhaus,Cellar,Wachterhaus — Cellar,058-016.webp,059-cos503.webp,,"66,2336,2268,926","850,90,700,230;150,170,330,400",
+800,map,Coffin Maker's Shop,Ground,Coffin Maker's Shop — Ground Level,_derived/063-cos05-13_2400.webp,064-cos504.webp,,"66,68,1132,1518","1320,120,850,210",DM source is only 1000 px wide (upscaled copy in _derived); prints soft
+810,map,Coffin Maker's Shop,Upper,Coffin Maker's Shop — Upper Level,_derived/063-cos05-13_2400.webp,064-cos504.webp,,"1202,68,1132,1518","110,120,250,320;360,80,340,60;220,1515,90,75",
+820,map,Coffin Maker's Workshop (battle map),Upper,Coffin Maker's Workshop battle map — First Floor (upper),,ei1wrjsousp61.jpg,,"0,0,1857,3282","3520,2800,480,460",Badge logo carried onto this page
+830,map,Coffin Maker's Workshop (battle map),Ground,Coffin Maker's Workshop battle map — Ground Floor,,ei1wrjsousp61.jpg,,"1857,0,2239,3282",,Badge is inside this crop
+900,map,Church of St Andral,Nave,Church of St Andral,,church-of-st-andral-maps-v0-46w11sis0gn41.webp,,,,
+910,map,Church of St Andral,Crypts,Church of St Andral — Crypts,,church-of-st-andral-maps-v0-qoa9kluo8mn41.webp,,,,
+1000,map,Vistani Camp,Camp,Vistani Camp (Area N9) — Map 5.6,066-018.webp,067-cos505.webp,,,,Fetched from the book map set
+1100,map,Vallaki town square,Square,Town square — Festival of the Blazing Sun,,"Gothic-City-Town-Square_4k_Grid_50x40_82PPI [Gloom, Sun Effigy].jpg",,,,
+2000,map,Castle Ravenloft,Main floor,Castle Ravenloft — Main Floor (dining hall K10),map-4.03-main-floor.webp,map-4.03-main-floor-player.webp,,,,Next session: dinner with Strahd
+2100,map,Wizard of Wines,Upper,Wizard of Wines — Upper Floor,111-028.webp,112-cos1201.webp,,"66,70,2268,1246","70,3140,2260,95",Next session
+2110,map,Wizard of Wines,Ground,Wizard of Wines — Ground Floor,111-028.webp,112-cos1201.webp,,"66,1319,2268,1014","620,90,1140,230;150,170,330,400;70,3140,2260,95",
+2120,map,Wizard of Wines,Cellar,Wizard of Wines — Cellar,111-028.webp,112-cos1201.webp,,"66,2336,2268,926","620,90,1140,230;150,170,330,400",
+9000,picture,,,Rictavio's wagon,061-cos05-12.webp,061-cos05-12.webp,,,,Picture — also at the end of the DM set
+9010,picture,,,Night street,aHR0cHM6Ly9iLnN0YWJsZWNvZy5jb20vNTAyMDg1ODAtNmI5My00NTU0LThmZTAtMTRkMjIyYzg0Y2E3LmpwZWc.webp,aHR0cHM6Ly9iLnN0YWJsZWNvZy5jb20vNTAyMDg1ODAtNmI5My00NTU0LThmZTAtMTRkMjIyYzg0Y2E3LmpwZWc.webp,,,,Picture — also at the end of the DM set

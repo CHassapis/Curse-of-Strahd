@@ -54,7 +54,8 @@ PACKS = [
 ]
 
 # Tags whose third field is a display name ({@creature Izek Strazni|CoS|Izek}).
-# All others show their first field ({@area Saidra's Lair|13d|x} -> Saidra's Lair).
+# The listed ones show their first field ({@area Saidra's Lair|13d|x} -> Saidra's
+# Lair; {@card Ghost|Tarokka Deck|CoS} -> Ghost).
 TAG_RE = re.compile(r"\{@(\w+)\s*([^{}]*)\}")
 
 
@@ -75,7 +76,7 @@ def _tag(m):
     if tag in ("b", "bold"):
         return "**" + first + "**"
     if tag in ("area", "filter", "book", "adventure", "quickref", "link", "5etools",
-               "footnote", "note", "loader", "color", "highlight", "help"):
+               "footnote", "note", "loader", "color", "highlight", "help", "card", "deck"):
         return first
     if len(parts) >= 3 and parts[2]:
         return parts[2]
@@ -163,7 +164,7 @@ def render(e, depth, out):
     else:
         if name:
             out.append("\n" + "#" * min(depth, 6) + " " + name + pg + "\n")
-        for k in ("entries", "items", "images"):
+        for k in ("entries", "items", "images", "wrappeds", "wrapped"):
             if k in e:
                 render(e[k], depth + 1, out)
 
