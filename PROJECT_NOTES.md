@@ -80,7 +80,7 @@ re-check against the published text done in this session.
 
 | ID | Correction | Book check |
 |---|---|---|
-| C-01 | The Tarokka **ally is Van Richten**, not Madam Eva. | Campaign reading — established by reader 1 |
+| C-01 | The Tarokka **ally is Van Richten**, not Madam Eva. Lines to fix (reader 5a): Future Possible §1 "Major events" row "All four items — Eva becomes their ally…"; Future Possible §2 "Madam Eva's messages", Icon row "She becomes their ally for the castle"; NPC card 23 (Madam Eva) "After all four items she becomes their ally". Keep "Four. Then I keep my word." and her telling them where Strahd waits (C-03). | Campaign reading — established by reader 1 |
 | C-02 | Madam Eva does **not** fight or help against Strahd as earlier documents implied. | Established by reader 1 |
 | C-03 | Eva still keeps her promise to tell the party where Strahd waits. | Campaign element — keep |
 | C-04 | Old Bonegrinder has **four levels, O1–O4**, matching the user's Bonegrinder map. **Our Prep IV Scene 1 search has only three floors**; the floor table must match the four-level map. | ✔ Ch 6: O1 Ground Floor, O2 Bone Mill, O3 Bedroom, O4 Domed Attic |
@@ -184,3 +184,23 @@ The artifact is **not** changed yet. It will be updated with the final rebuild
 - **Reader 7 extra checks:** Tarokka ally card text for Van Richten (C-01),
   NPC appendix descriptions (Baron, C-10), treasure appendix vs our 67 cards
   (D-6).
+
+---
+
+## 9. Readers 4–7 — consolidated findings (added as each reader finishes)
+
+Full reports: `readers/reader*_report.md`. Only the items that need the user
+or change a document are listed here.
+
+### Reader 5a — Argynvostholt (done 2026-09-24; 24 findings: 4 CONFIRMED FIX, 8 CURRENT CAMPAIGN VERSION, 5 BOOK FACT, 2 CONFLICT, 1 DECISION REQUIRED, 4 OPTIONAL IMPROVEMENT)
+
+- **CONFIRMED FIX (C-01/C-02):** the Eva "ally" line is in three documents (see C-01).
+- **NEW DECISION D-8 — Argynvost's skull:** in the book it hangs in Castle Ravenloft, K67 Hall of Bones (250 lb, Ch 4 p. 78). No campaign document says how the party gets it before Argynvostholt (level 10) and the castle (level 12), yet a knight rides with them to the castle once the beacon is lit. Options: a separate raid on the castle; stealing it after the level-6 dinner; or lighting the beacon during/after the final assault (no knight rides with them).
+- **CONFLICT — where the skull goes:** book: sealed in the mausoleum (Q16), the light then rises to the tower; every book clue points to the mausoleum. Future Possible: "in the beacon at the top of the tower". Keep ours and drop the book clues, or switch to the mausoleum.
+- **CONFLICT — the chapel revenants:** in the book the three chapel revenants attack on sight, and our Icon is in that chapel. Are Future Possible's "3 revenants" these three?
+- **Correction to the brief:** the Icon of Ravenloft is **not** Tarokka-placed in the book; it sits on the Castle Ravenloft chapel altar (K15). Our move to the Argynvostholt chapel is deliberate and consistent. Book Tarokka spots at Argynvostholt: Q36 (Vladimir holds it), Q53 (west windowsill).
+- Vladimir fight: ours 9,700 XP (Moderate at 10) is heavier than the book's 7,100 — stays (C-11). "The revenants come back" matches the book. The knight who stays is homebrew; Sir Godfrey is the book's natural candidate (optional).
+- **Check with reader 4:** the Shield of the Silver Dragon (card 42) is in the Castle treasury K41 in the book — make sure it isn't placed twice.
+- Possible omissions (D-6): 4 potions of invulnerability, Vladimir's +2 greatsword, a 250 gp platinum holy symbol.
+- OPTIONAL (touches C-11): the book gives +1 AC and saves once the beacon is lit.
+- Maps not in `Maps/`: Map 7.1 and 7.2 (Argynvostholt; 7.2 includes the third floor).
