@@ -59,11 +59,10 @@
   - I&T › Tier 1 › *Vallaki — things handed over*, row 27 (a DM note).
   - FP › 1 › *Major events along the way* (one row).
   - Optional: FP › *Castle Ravenloft — Dinner with Strahd* › *The dinner* (one line if they ask Strahd about the mask).
-  - Nothing else.
 - **Difficulty:** unchanged. No fight.
 - **Risks:**
-  - It needs one piece of glue: the book says she must know Ireena's name or have seen her. Leave it unexplained (the Dark Powers, RHW p. 5), or add one line of backstory for the brooch.
-  - Players may read it as a way home. Say plainly that it's inert.
+  - It needs glue: she must know Ireena's name or have seen her. Leave it unexplained (the Dark Powers, RHW p. 5) or add one line of brooch backstory.
+  - Players may read it as a way home; say plainly that it's inert.
   - It lands on the dinner day and may pull focus.
 
 ## Option C — A second guest at Strahd's table
@@ -71,18 +70,18 @@
 - **What she wants:** to be received as an equal by the First Darklord (RHW p. 46), and to catch an impostor.
   - She asks one guest "Who are you?" and cries "Impostor!" at a lie. Strahd stops her: "My guests, Duchess. I gave my word."
   - If she picks Cassian, she reveals nothing beyond Strahd's own "Viktor" on the road. The Viktor thread is untouched.
-- **Party gets:** a glimpse of the wider Mists, and proof his word holds even against another Darklord. It also shows the Mists open for somebody, which gives his offer more weight.
-- **Touches:** nothing is replaced. The offer, the chair, the dance, Rahadin and all three brides' lines stay.
+- **Party gets:** a glimpse of the wider Mists, and proof his word holds even against another Darklord.
+- **Touches:** nothing is replaced. The offer, the chair, the dance, Rahadin and the brides' lines stay.
 - **Edits:**
   - FP › *Castle Ravenloft — Dinner with Strahd*: *The castle* (the table is "set for one more"; add a place), *The dinner* (her beat), *The rules*, *Possible results* (one row).
   - Brides › p. 5 *Where they appear*, row "Dinner at the castle" (optional).
   - The Strahd sheet.
   - A new NPC card, plus a DM index line.
-- **Difficulty:** no fight. Attacking her falls under FP's "a demonstration, not a fight". Her 5,000 XP sits between Moderate (4,225) and High (6,000) at level 6. Keep her out of the after-dinner hunt.
+- **Difficulty:** no fight; attacking her is FP's "a demonstration, not a fight". Her 5,000 XP sits between Moderate (4,225) and High (6,000) at level 6. Keep her out of the after-dinner hunt.
 - **Risks:**
-  - It's the biggest stretch of the book: a domain exists to hold its Darklord (RHW p. 8).
+  - The biggest stretch of the book: a domain exists to hold its Darklord (RHW p. 8).
   - It crowds the busiest social scene and shares Strahd's spotlight.
-  - It could make handing Ireena over tempting.
+  - Seeing the Mists open for her may make handing Ireena over tempting.
 
 ## Option D — One night in Port-a-Lucine (Mists side trip)
 - **Where/when:** a side trip after **Van Richten's Tower (8)**, slotted like *5b Mount Baratok*.
