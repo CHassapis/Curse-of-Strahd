@@ -227,6 +227,29 @@ def main():
         f.write(text)
     index.append(f"| saidra_rhw.md | RHW: Dementlieu / Saidra d'Honaire | task E | {words(text):,} |")
 
+    # The Horrors Within's Barovia entry: the 2026 view of Strahd's domain.
+    bar = []
+
+    def find_barovia(e):
+        if isinstance(e, dict):
+            if e.get("name") == "Barovia" and e.get("type") in ("section", "entries"):
+                bar.append(e)
+                return
+            for v in e.values():
+                find_barovia(v)
+        elif isinstance(e, list):
+            for x in e:
+                find_barovia(x)
+    find_barovia(rhw)
+    out = ["# Barovia - Ravenloft: The Horrors Within (2026)\n",
+           "Published text only - BOOK FACT source (2026 domain entry). The campaign follows the 2016 adventure unless noted.\n"]
+    for h in bar[:1]:
+        render(h, 2, out)
+    text = re.sub(r"\n{3,}", "\n\n", "".join(out))
+    with open(os.path.join(OUT, "rhw_barovia.md"), "w", encoding="utf-8") as f:
+        f.write(text)
+    index.append(f"| rhw_barovia.md | RHW: Barovia domain entry | skill / task E | {words(text):,} |")
+
     with open(os.path.join(OUT, "INDEX.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(index) + "\n")
     print("\n".join(index))

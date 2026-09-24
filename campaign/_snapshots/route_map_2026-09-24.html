@@ -1,0 +1,605 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Barovia Route Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IM+Fell+English:ital@0;1&display=swap">
+<style>
+:root{
+  --bg:#e9e7ee; --surface:#f7f6fa; --surface-2:#eeecf3; --sel-bg:#f1e6ea;
+  --ink:#1c1926; --muted:#5b566a; --line:#cfcad9; --spine:#8d86a2;
+  --accent:#6b1c34; --accent-ink:#ffffff; --amber:#865a12; --amber-bg:#f1e5cc;
+  --lud:#b0213c; --ana:#96700f; --vol:#ad4b22; --on-bride:#ffffff;
+  --display:"IM Fell English","Iowan Old Style",Georgia,serif;
+  --body:"Alegreya Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121018; --surface:#1a1722; --surface-2:#221f2c; --sel-bg:#2b1d26;
+    --ink:#ece9f3; --muted:#a6a0b7; --line:#363146; --spine:#6a6282;
+    --accent:#e07590; --accent-ink:#1a1722; --amber:#e3ae5c; --amber-bg:#2e2616;
+    --lud:#f0647c; --ana:#e2bb55; --vol:#ef8c5a; --on-bride:#1a1722;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121018; --surface:#1a1722; --surface-2:#221f2c; --sel-bg:#2b1d26;
+  --ink:#ece9f3; --muted:#a6a0b7; --line:#363146; --spine:#6a6282;
+  --accent:#e07590; --accent-ink:#1a1722; --amber:#e3ae5c; --amber-bg:#2e2616;
+  --lud:#f0647c; --ana:#e2bb55; --vol:#ef8c5a; --on-bride:#1a1722;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 56px}
+@media (max-width:480px){.wrap{padding-inline:16px}}
+.masthead{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:end;padding-bottom:22px;border-bottom:1px solid var(--line)}
+@media (max-width:820px){.masthead{grid-template-columns:1fr;gap:18px}}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(36px,5.2vw,56px);line-height:1;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:14px 0 0;color:var(--muted);max-width:60ch}
+.finder{position:relative}
+.finder label{display:block;font-size:13.5px;font-weight:500;color:var(--muted);margin-bottom:6px}
+.field{position:relative}
+.field input{width:100%;font:inherit;font-size:17px;padding:12px 44px 12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.field input::placeholder{color:var(--muted);opacity:.8}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px}
+#clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;font-size:22px;line-height:1;color:var(--muted);cursor:pointer;width:34px;height:34px;border-radius:6px}
+#clear:focus-visible{outline:2px solid var(--accent)}
+.results{list-style:none;margin:0;padding:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);max-height:360px;overflow:auto;position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:20;box-shadow:0 14px 34px -14px rgba(20,16,30,.45)}
+.field input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.results li button{all:unset;display:block;width:100%;box-sizing:border-box;padding:8px 10px;border-radius:7px;cursor:pointer}
+.results li button:hover,.results li button:focus-visible{background:var(--surface-2)}
+.results li button:focus-visible{outline:2px solid var(--accent)}
+.results .kind{font:500 10.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-right:6px}
+.results .r-what{font-weight:500}
+.results .r-where{display:block;color:var(--muted);font-size:13.5px}
+.results .none{padding:8px 10px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding:14px 0 4px;font-size:13.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw-line{width:22px;height:0;border-top:2px solid var(--spine)}
+.sw-dash{width:22px;height:0;border-top:2px dashed var(--spine)}
+.sw-dia{width:10px;height:10px;border:2px solid var(--spine);transform:rotate(45deg)}
+.board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:30px;margin-top:16px;align-items:start}
+@media (max-width:860px){.board{grid-template-columns:1fr;gap:10px}}
+h2{font-family:var(--display);font-weight:400;font-size:27px;line-height:1.1;margin:0 0 12px}
+.hint{color:var(--muted);margin:-4px 0 14px;max-width:70ch;font-size:15px}
+.flow{list-style:none;margin:0;padding:0;position:relative}
+.flow::before{content:"";position:absolute;left:15px;top:20px;bottom:24px;width:2px;background:var(--spine);opacity:.55}
+.row{position:relative;padding:0 0 12px 40px}
+.marker{position:absolute;left:8px;top:17px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--spine)}
+.row.event .marker{border-radius:2px;transform:rotate(45deg);width:13px;height:13px;left:9.5px;top:19px}
+.row.sel .marker{background:var(--accent);border-color:var(--accent)}
+.stop{all:unset;box-sizing:border-box;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:3px 10px;align-items:center;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);cursor:pointer;transition:border-color .15s,opacity .15s,background .15s}
+.stop:hover{border-color:var(--spine)}
+.stop:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stop[aria-current="true"]{border-color:var(--accent);background:var(--sel-bg)}
+.stop .lvl{font:500 12px/1 var(--mono);padding:4px 6px;border-radius:5px;background:var(--surface-2);color:var(--muted);white-space:nowrap}
+.stop[aria-current="true"] .lvl{background:var(--accent);color:var(--accent-ink)}
+.stop .nm{font-family:var(--display);font-size:19px;line-height:1.15}
+.stop .dots{display:inline-flex;gap:3px}
+.stop .sub{grid-column:2 / -1;color:var(--muted);font-size:14px;line-height:1.3}
+.row.event .stop{border-style:dashed;background:transparent}
+.row.event .stop[aria-current="true"]{background:var(--sel-bg)}
+.side{margin:8px 0 0 26px;position:relative}
+.side::before{content:"";position:absolute;left:-18px;top:-10px;width:14px;height:30px;border-left:2px dashed var(--spine);border-bottom:2px dashed var(--spine);border-bottom-left-radius:8px;opacity:.75}
+.side .stop{border-style:dashed;background:transparent}
+.side .stop[aria-current="true"]{background:var(--sel-bg)}
+.side-tag{grid-column:2 / -1;font:500 10.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.flow.searching .stop:not(.hit){opacity:.38}
+.stop.hit{border-color:var(--amber)}
+.bd{width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;font:600 10px/1 var(--mono);color:var(--on-bride)}
+.bd.lud{background:var(--lud)} .bd.ana{background:var(--ana)} .bd.vol{background:var(--vol)}
+.detail-col{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+@media (max-width:860px){.detail-col{position:static}}
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px 22px}
+.row .detail{margin-top:10px}
+@media (max-width:480px){.detail{padding:16px}}
+.d-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.d-head h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.4vw,34px);line-height:1.05;margin:0 0 4px;flex-basis:100%;text-wrap:balance}
+.pill{font:500 12px/1 var(--mono);padding:5px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.lvl{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.doc{font-size:12.5px;padding:4px 8px;border-radius:6px;background:var(--surface-2);color:var(--muted)}
+.d-sec{margin-top:18px}
+.d-sec h4{font:500 11.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 9px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{all:unset;font-size:14px;line-height:1.25;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);cursor:pointer}
+.chip:hover{border-color:var(--spine)} .chip:focus-visible{outline:2px solid var(--accent)}
+.items{list-style:none;margin:0;padding:0}
+.items li{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:1px 10px;padding:7px 0;border-top:1px solid var(--line);align-items:baseline}
+.items li:first-child{border-top:0}
+.items .cno{font:500 12.5px/1.3 var(--mono);color:var(--amber)}
+.items .iname{font-weight:500}
+.items .how{grid-column:2 / 3;color:var(--muted);font-size:13.5px}
+.items .user{font-size:13.5px;text-align:right}
+@media (max-width:480px){.items li{grid-template-columns:28px minmax(0,1fr)}.items .user{grid-column:2;text-align:left;color:var(--accent)}}
+.tag{font:500 9.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 5px;border-radius:4px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.tag.tarokka{background:var(--accent);color:var(--accent-ink)}
+.tag.hold{border:1px dashed var(--muted);color:var(--muted)}
+.tag.shop{background:var(--amber-bg);color:var(--amber)}
+.tag.enemy{border:1px solid var(--line);color:var(--muted)}
+.events{margin:0;padding-left:18px}
+.events li{margin:4px 0}
+.bride-lines{display:grid;gap:10px}
+.bride-line{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;align-items:start}
+.bride-line .bd{margin-top:2px}
+.bride-line b{font-weight:700}
+.fight{padding:10px 12px;border-radius:10px;background:var(--surface-2);font-size:15px}
+.touch{display:flex;flex-wrap:wrap;gap:6px}
+.touch .t{font-size:13.5px;padding:4px 9px;border-radius:6px;background:var(--surface-2)}
+.touch .t b{font-weight:700}
+.connect,.party,.docs{margin-top:44px}
+.matrix-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.matrix{border-collapse:separate;border-spacing:0;min-width:900px;width:100%;font-size:14px}
+.matrix th,.matrix td{padding:9px 6px;text-align:center;border-bottom:1px solid var(--line)}
+.matrix thead th{font:500 11px/1.2 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);vertical-align:bottom}
+.matrix thead th button{all:unset;cursor:pointer;padding:2px 3px;border-radius:4px}
+.matrix thead th button:focus-visible{outline:2px solid var(--accent)}
+.matrix tbody th{text-align:left;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:1;padding-left:14px;padding-right:12px;font-weight:700}
+.matrix tbody th small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.matrix td button{all:unset;display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--ink);cursor:pointer}
+.matrix td button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.matrix td button.lud{background:var(--lud)} .matrix td button.ana{background:var(--ana)} .matrix td button.vol{background:var(--vol)}
+.matrix .hl{background:var(--sel-bg)}
+.matrix tbody tr:last-child th,.matrix tbody tr:last-child td{border-bottom:0}
+.party-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+@media (max-width:360px){.party-grid{grid-template-columns:1fr}}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.pcard h3{font-family:var(--display);font-weight:400;font-size:23px;margin:0 0 6px}
+.pcard ul{list-style:none;margin:0;padding:0}
+.pcard li button{all:unset;display:grid;grid-template-columns:28px minmax(0,1fr);gap:0 6px;width:100%;box-sizing:border-box;padding:6px 0;border-top:1px solid var(--line);cursor:pointer;font-size:14.5px;line-height:1.3}
+.pcard li:first-child button{border-top:0}
+.pcard li button:focus-visible{outline:2px solid var(--accent)}
+.pcard .cno{font:500 12px/1.4 var(--mono);color:var(--amber)}
+.pcard .where{grid-column:2;color:var(--muted);font-size:12.5px}
+.docs ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px 24px}
+.docs li{padding:10px 0;border-top:1px solid var(--line)}
+.docs b{display:block;font-weight:700}
+.docs span{color:var(--muted);font-size:14.5px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Curse of Strahd · DM reference</p>
+      <h1>Barovia Route Map</h1>
+      <p class="lede">Every stop from Bonegrinder to the castle, in the order the party will most likely go. Click a stop to see who's there, what they find, what happens, where the brides turn up and how hard the fight is.</p>
+    </div>
+    <div class="finder">
+      <label for="q">Find a person, item, event or card number</label>
+      <div class="field">
+        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Sunsword, Izek, Volenta, 42…">
+        <button id="clear" type="button" aria-label="Clear the search" hidden>×</button>
+      </div>
+      <ul id="results" class="results" hidden></ul>
+    </div>
+  </header>
+
+  <div class="legend" aria-label="Legend">
+    <span><i class="bd lud">L</i> Ludmilla</span>
+    <span><i class="bd ana">A</i> Anastrasya</span>
+    <span><i class="bd vol">V</i> Volenta</span>
+    <span><i class="sw-line"></i> The route</span>
+    <span><i class="sw-dash"></i> Side trip</span>
+    <span><i class="sw-dia"></i> On the road</span>
+    <span><i class="tag tarokka" style="margin:0">Tarokka</i> Story item</span>
+    <span><i class="tag hold" style="margin:0">Held back</i> Your call</span>
+  </div>
+
+  <main class="board">
+    <section aria-labelledby="route-h">
+      <h2 id="route-h">The route</h2>
+      <ol id="flow" class="flow"></ol>
+    </section>
+    <aside id="detailCol" class="detail-col" aria-label="Selected stop">
+      <article id="detail" class="detail" aria-live="polite"></article>
+    </aside>
+  </main>
+
+  <section class="connect" aria-labelledby="connect-h">
+    <h2 id="connect-h">How it all connects</h2>
+    <p class="hint">Each row is a thread that runs through the campaign; each dot is a stop it touches. Click a dot or a stop name to open it.</p>
+    <div class="matrix-scroll"><table id="matrix" class="matrix"></table></div>
+  </section>
+
+  <section class="party" aria-labelledby="party-h">
+    <h2 id="party-h">Who gets what</h2>
+    <p class="hint">Every item card that suits each character, in the order they'll find it. Click one to jump to the stop.</p>
+    <div id="partyGrid" class="party-grid"></div>
+  </section>
+
+  <footer class="docs" aria-labelledby="docs-h">
+    <h2 id="docs-h">Where it's written</h2>
+    <ul>
+      <li><b>Session Prep IV</b><span>Next session: Bonegrinder, the road, Vallaki days 1–3 and the Festival — every read-aloud.</span></li>
+      <li><b>Future Possible</b><span>The route, who and what is at each place, the difficulty curve, the brides and every open thread.</span></li>
+      <li><b>Items and Treasure</b><span>All 67 cards: where, how they get each one, who uses it, what it sells for, and the gold.</span></li>
+      <li><b>Strahd's Brides</b><span>Stat blocks, the leash, the escape roll, and what changes if one dies early.</span></li>
+      <li><b>Strahd DM sheet</b><span>His 2024 stat block, lair actions, the Heart of Sorrow, and how to play him by stage.</span></li>
+      <li><b>Item card maker</b><span>The printable deck, 12 cards to a page, card backs and Ireena's page.</span></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+const STOPS = [
+{id:"mill", short:"Mill", name:"Old Bonegrinder", lvl:"5", kind:"main",
+ doc:["Prep IV · Scene 1","Items · Tier 1"],
+ sub:"The search, floor by floor",
+ who:["Morgantha — dead, on the floor|Morgantha","Rose and Thorn — the Durst ghost children|Rose and Thorn"],
+ find:[
+  {c:"01",n:"Bag of Holding (the Bagman inside)",u:"Party",how:"Wardrobe, 1st floor"},
+  {c:"02",n:"Hag Eye",u:"Party",how:"Top shelf — or destroy it and the hags lose them"},
+  {c:"03",n:"Glamerweave",u:"Sell",how:"Wardrobe"},
+  {c:"04",n:"Potion of Dreaming",u:"Party",how:"Shelves"},
+  {c:"05",n:"Spell Scroll: Locate Object",u:"Party",how:"Iron chest — DC 15 or Morgantha's key"},
+  {c:"06",n:"Basilisk Oil (2 doses)",u:"Party",how:"Rose's hiding place — Perception DC 16"},
+  {c:"07",n:"Needle of Mending",u:"Cassian",how:"Sewing basket"},
+  {c:"08",n:"Thief's Thimble",u:"Ethradir",how:"Sewing basket"},
+  {c:"09",n:"Cloak of the Other Self (+ curse)",u:"Anyone brave",how:"Wardrobe"},
+  {c:"—",n:"Morgantha's heartstone and soul bag",u:"Party",how:"On her body — Offalia comes for the heartstone"},
+  {c:"—",n:"The ledger, Strahd's note to Morgantha, the pastry order book, Viktor's receipt, the bronze sheaf, Ethradir's mother's contract",u:"Story",how:"All over the mill"},
+  {c:"—",n:"120 gp, 340 sp, 40 gp of jewellery",u:"Gold",how:"The iron chest"}],
+ events:["They only fought on the ground floor — nothing has been searched","Rose and Thorn show the way, and can be freed"],
+ fight:null, brides:[]},
+{id:"road", short:"Road", name:"The road — Strahd", lvl:"5", kind:"main",
+ doc:["Prep IV · Scene 2","Brides sheet · p. 5"],
+ sub:"His offer; three brides in his carriage",
+ who:["Strahd, on a black horse|Strahd","Ludmilla, Anastrasya and Volenta — in his carriage|bride","Wolves in the trees|wolves"],
+ find:[],
+ events:["He speaks to each of them — Ireena first, Cassian last","The offer: “Walk her to my gate, and the mists will open.”","The warning: one hag is in Vallaki, one went east","The brides watch — one moment each, no fight"],
+ fight:"No fight. Attack him and he catches the blade, or casts Command.",
+ brides:[["lud","Never seen — a red veil in the curtain. “My lord. They'll miss the gates.”"],["ana","“So that's her. I thought she'd be taller.”"],["vol","“Can I have that one? Just a little? I'll give it back.”"]]},
+{id:"vallaki", short:"Vallaki", name:"Vallaki", lvl:"5–6", kind:"main",
+ doc:["Prep IV · Scenes 3–7","Prep IV · Vallaki days 1–3","Items · Tier 1"],
+ sub:"Offalia's attack, the Festival, a bride each day",
+ who:["Vasily and Pyotr — the gate guards|Pyotr","Urwin and Danika Martikov — Blue Water Inn|Martikov","Rictavio — Van Richten in disguise|Van Richten","Lenka — the pastry girl|Lenka","Izek Strazni — Ireena's real brother|Izek","Baron Vargas Vallakovich|Baron","Lady Fiona Wachter, Nikolai and Karl|Wachter","Father Lucian, Yeska, Milivoj|Lucian","Henrik van der Voort — the coffin maker|Henrik","Oksana — the shop|Oksana","Victor Vallakovich — the attic|Victor","Luvash, Arrigal, Arabelle — the Vistani camp|Arabelle","Bluto — on the lake|Bluto","Offalia — the youngest hag|Offalia"],
+ find:[
+  {c:"22",n:"Weapon of Warning",u:"Ireena",how:"Urwin, the morning after the fire"},
+  {c:"21",n:"Sending Stones",u:"Party",how:"The Martikovs, once they trust the party"},
+  {c:"23",n:"Periapt of Health",u:"Fedra",how:"Father Lucian — return the bones"},
+  {c:"24",n:"Boots of Elvenkind",u:"Ireena",how:"Luvash — save Arabelle"},
+  {c:"20",n:"Serpent Scale Armor",u:"Barry",how:"The Baron's public reward"},
+  {c:"19",n:"Ring of Candor",u:"Fedra",how:"The Baron's private gift"},
+  {c:"26",n:"Ring of Mind Shielding",u:"Cassian",how:"Lady Wachter's bribe"},
+  {c:"27",n:"Masquerader's Brooch",u:"Ireena",how:"Wachter's gift — or stolen"},
+  {c:"28",n:"Orb of Sorcery",u:"Cassian",how:"Victor's trade"},
+  {c:"29",n:"Feywrought Armor",u:"Fedra",how:"The freed pixies at Blinsky's (or wherever you put them)"},
+  {c:"18",n:"Eyes of Deceit",u:"Cassian",how:"Offalia drops them",t:"enemy"},
+  {c:"30",n:"Baba Yaga's Dancing Broom",u:"Anyone",how:"Offalia leaves it behind",t:"enemy"},
+  {c:"25",n:"Cloak of Protection",u:"Ethradir",how:"Beat Izek",t:"enemy"},
+  {c:"11",n:"Deck of Wonder — 300 gp",u:"Anyone",how:"Oksana's shop",t:"shop"},
+  {c:"17",n:"Gloves of Thievery — 400 gp",u:"Ethradir",how:"Oksana's shop",t:"shop"},
+  {c:"61",n:"Brooch of Shielding — 400 gp",u:"Anyone",how:"Oksana's shop",t:"shop"},
+  {c:"62",n:"Warped Headband of Intellect — 350 gp",u:"Barry or Ireena",how:"Oksana's shop",t:"shop"},
+  {c:"68",n:"Wand of the War Mage, +1 — 500 gp",u:"Cassian",how:"Oksana's shop",t:"shop"},
+  {c:"49",n:"Periapt of Proof against Poison — 800 gp",u:"Anyone",how:"Oksana's shop",t:"shop"},
+  {c:"40",n:"Enspelled Weapon: Speak with Dead — 900 gp",u:"Ireena",how:"Oksana's shop",t:"shop"},
+  {c:"50",n:"Gloomwrought Armor — 900 gp",u:"Ethradir",how:"Oksana's shop",t:"shop"}],
+ events:["Night 1: Offalia's attack — the Blue Water Inn burns","Morning after: Urwin's gift, and Miranda's ribbon in the ash","Day 1: Izek's doll · Oksana's shop · dinner at Wachterhaus","Day 2: the stolen bones · Arabelle on the lake · news of Miranda","Day 3: the Festival — Izek grabs Ireena (the reveal) while Lady Wachter makes her move · St. Andral's Feast","They side with the Baron, Lady Wachter, Izek, the Church — or nobody"],
+ fight:"Offalia's attack 4,500 XP (High) · Henrik's shop, 2 vampire spawn 3,600 (High at 5) · Festival night, 2 spawn + Volenta holding back 6,100 (above High at 5: send only Volenta; just over High at 6)",
+ brides:[["ana","Lady Wachter's house guest. Guest of honour at dinner on day 1; by day, a coffin in the Wachterhaus cellar — the chance to stake her early."],["lud","Behind the stolen bones: Henrik's “lady in a red veil”. Her own grave in the churchyard, with fresh roses. On the church roof on Festival night."],["vol","Festival night: leads the spawn into the church, or hunts the crowd. Two rounds holding back, then an escape roll."]]},
+{id:"dinner", short:"Dinner", name:"Dinner at Castle Ravenloft", lvl:"6", kind:"main",
+ doc:["Future Possible · Dinner with Strahd"],
+ sub:"His second offer, as their host",
+ who:["Strahd|Strahd","Rahadin — pours the wine|Rahadin","Ludmilla, Anastrasya and Volenta|bride"],
+ find:[],
+ events:["The letter, and a black carriage with no driver","The second offer: “Bring me Ireena, and the mists open.”","He asks Ireena to dance","Nobody is harmed under his roof — until they explore"],
+ fight:"None — he gave his word. If they explore after dinner, the brides hunt them: holding back, but they don't stop.",
+ brides:[["lud","Serves the wine with Rahadin. “The guest rooms are the other way.”"],["ana","Plays hostess. Her glass cracks when he asks Ireena to dance."],["vol","Sits far too close. “After dinner doesn't count.”"]]},
+{id:"winery", short:"Winery", name:"Wizard of Wines", lvl:"6–7", kind:"main",
+ doc:["Future Possible · Wizard of Wines","Items · Tier 2"],
+ sub:"The siege; the Tome in the cellar",
+ who:["Davian Martikov and his family — wereravens, the Keepers of the Feather|Martikov"],
+ find:[
+  {c:"32",n:"Tome of Strahd",u:"Party",how:"The cellar, among the casks",t:"tarokka"},
+  {c:"31",n:"Bracers of Celerity",u:"Barry",how:"Davian's thanks for breaking the siege"}],
+ events:["The siege: druids and blights","Two of the three gems were stolen — one to Yester Hill, one to Berez","Madam Eva's message after the Tome"],
+ fight:"2,250 XP — Low, a warm-up. With a tree blight (+2,900): High at 6, Moderate at 7.",
+ brides:[]},
+{id:"yester", short:"Yester", name:"Yester Hill", lvl:"7", kind:"main",
+ doc:["Future Possible · Yester Hill","Items · Tier 2"],
+ sub:"The ritual and the first gem",
+ who:["The druids and berserkers|druid","Wintersplinter — a giant tree blight, not yet awake|Wintersplinter"],
+ find:[
+  {c:"33",n:"Gulthias Staff",u:"Cassian",how:"The druid leader — a temptation",t:"enemy"},
+  {c:"67",n:"Dagger of Venom",u:"Ethradir",how:"The druids' second",t:"enemy"},
+  {c:"—",n:"The first gem",u:"Story",how:"In the wicker effigy of Strahd — back to Davian"}],
+ events:["Stop the ritual before Wintersplinter wakes","Barry at the Gulthias tree — Chauntea's name might come back"],
+ fight:"4,100 XP — Moderate. With Wintersplinter awake: 7,000, High.",
+ brides:[]},
+{id:"roadwest", short:"Road W", name:"The road west", lvl:"7", kind:"event",
+ doc:["Future Possible · The road west","Brides sheet · pp. 3–5"],
+ sub:"Volenta's hunt · Bella's offer",
+ who:["Volenta — off her leash|Volenta","Bella, holding Miranda's hand|Miranda","A dead werewolf|werewolf"],
+ find:[
+  {c:"45",n:"Harkon's Bite (+ curse)",u:"Anyone who dares",how:"On a dead werewolf on the road to Krezk",t:"enemy"},
+  {c:"—",n:"Volenta's gold teeth and her letter — her trophy sword stays in her coffin",u:"Party",how:"Only if they destroy her"}],
+ events:["Volenta stalks them for three nights, then comes in","Strahd's note: “My wife has been punished. You have my apologies.”","Bella's offer at dusk: Miranda for Ireena","Each night, Ethradir dreams of Miranda"],
+ fight:"Volenta at full strength: 5,000 XP — Moderate. She leaves at half HP (escape roll).",
+ brides:[["vol","Her hunt. “Run. Please run. It's so much better when you run.”"]]},
+{id:"vrtower", short:"VR Tower", name:"Van Richten's Tower", lvl:"7–8", kind:"main",
+ doc:["Future Possible · Van Richten's Tower","Items · Tier 2"],
+ sub:"The Sunsword; Ezmerelda",
+ who:["Ezmerelda d'Avenir|Ezmerelda","Rictavio / Van Richten — if revealed|Van Richten"],
+ find:[
+  {c:"34",n:"Sunsword",u:"Ireena",how:"Open the tower safely",t:"tarokka"},
+  {c:"35",n:"Keyholes Dagger — Three",u:"Barry",how:"His locked cabinet"},
+  {c:"36",n:"Bracers of Defense",u:"Cassian",how:"His old gear"},
+  {c:"37",n:"Ioun Stone of Awareness",u:"Fedra",how:"His old gear"},
+  {c:"38",n:"Van Richten's Infiltrator Leathers",u:"Ethradir",how:"His disguise kit"},
+  {c:"66",n:"Cloak of Elvenkind",u:"Ethradir",how:"Ezmerelda's gift — reunite her with Van Richten"}],
+ events:["Ezmerelda and Van Richten reunited","Van Richten's notes on the brides — how to fight them","Madam Eva's message after the Sunsword"],
+ fight:"The tower's lightning trap. Ezmerelda or Van Richten know the safe way in.",
+ brides:[["lud","His notes: “A wizard, and patient. Make her waste her counterspell.”"],["ana","“She'll go for the girl's face. She always goes for the face.”"],["vol","“The black glass heart takes the first blows. When it breaks, stand back.”"]]},
+{id:"baratok", short:"Baratok", name:"Mount Baratok", lvl:"8+", kind:"side", parent:"vrtower",
+ doc:["Future Possible · Mount Baratok"],
+ sub:"Side trip: the Mad Mage",
+ who:["The Mad Mage — Mordenkainen, who lost to Strahd|Mad Mage"],
+ find:[],
+ events:["Restore his mind: Greater Restoration, a vestige's gift, or a Keepers' remedy","Restored, he helps once at the castle"],
+ fight:"Don't. He's far beyond them — he blasts, teleports away and turns up later.",
+ brides:[]},
+{id:"krezk", short:"Krezk", name:"Krezk and the Abbey", lvl:"8–9", kind:"main",
+ doc:["Future Possible · Krezk","Items · Tier 2"],
+ sub:"The Holy Symbol, the wedding dress, the Blessed Pool",
+ who:["Burgomaster Dmitri Krezkov and Anna|Krezkov","The Abbot — a fallen deva (CR 10)|Abbot","Vasilka — the flesh-golem bride|Vasilka","The mongrelfolk|mongrelfolk"],
+ find:[
+  {c:"39",n:"Holy Symbol of Ravenkind",u:"Fedra",how:"Trade the Abbot the wedding dress, or find it",t:"tarokka"},
+  {c:"72",n:"Devotee's Censer",u:"Fedra",how:"Saint Markovia's reliquary"},
+  {c:"69",n:"Amulet of the Devout, +1",u:"Fedra",how:"The Abbot's first offer for the dress"},
+  {c:"64",n:"Staff of Healing",u:"Fedra",how:"The Abbot's second gift — only if the wedding goes ahead",t:"hold"}],
+ events:["The wedding dress for Vasilka","Ireena at the Blessed Pool — Tatyana, and Sergei","Anastrasya's raid, the night after","Madam Eva's message after the Holy Symbol"],
+ fight:"Anastrasya, 2 spawn and her bats: ~7,600 XP — High at 8 by a hair, Moderate at 9. Don't fight the Abbot before level 11.",
+ brides:[["ana","Comes for Ireena's face. “Hold still. I only want the face.”"]]},
+{id:"wolves", short:"Wolves", name:"The Werewolf Den", lvl:"9", kind:"side", parent:"krezk",
+ doc:["Future Possible · The Werewolf Den"],
+ sub:"Side trip: Kiril's challenge",
+ who:["Kiril Stoyanovich|Kiril","Emil Toranescu and Zuleika|Emil","Krezk's stolen children|children"],
+ find:[{c:"46",n:"Harkon's Bite's curse ends if Kiril dies",u:"Story",how:"Kill Kiril"}],
+ events:["Kiril's challenge — Emil against Kiril","Free the children and Krezk opens its gates"],
+ fight:"The whole pack: ~6,600 XP, Moderate. The duel avoids it.",
+ brides:[]},
+{id:"berez", short:"Berez", name:"Berez", lvl:"9–10", kind:"main",
+ doc:["Future Possible · Berez","Items · Tier 2"],
+ sub:"Baba Lysaga; Miranda's rescue",
+ who:["Baba Lysaga — “Strahd's mother”|Lysaga","Bella — the elder hag|Bella","Miranda — her fingertips turning grey|Miranda","Scarecrows, and the creeping hut|hut"],
+ find:[
+  {c:"47",n:"Staff of Skulls",u:"Cassian",how:"Beat Baba Lysaga",t:"enemy"},
+  {c:"48",n:"Baba Yaga's Mortar and Pestle",u:"Fedra or Cassian",how:"Her hut, once she's gone",t:"enemy"},
+  {c:"—",n:"The second gem",u:"Story",how:"Inside the hut — it makes it walk. Back to Davian"}],
+ events:["Rescue Miranda before the change completes","Lysaga goes for Ireena first","Take the gem and the hut stops"],
+ fight:"Bella first: 1,800. Lysaga and 3 scarecrows: 7,800, Moderate. With the hut: 15,000, past High.",
+ brides:[]},
+{id:"argyn", short:"Argyn.", name:"Argynvostholt", lvl:"10", kind:"main",
+ doc:["Future Possible · Argynvostholt","Items · Tier 3"],
+ sub:"The Icon; lighting the beacon",
+ who:["Vladimir Horngaard|Vladimir","The revenant knights|knights","Argynvost's spirit|Argynvost"],
+ find:[
+  {c:"41",n:"Icon of Ravenloft",u:"Party",how:"The chapel",t:"tarokka"},
+  {c:"42",n:"Shield of the Silver Dragon",u:"Fedra",how:"The armoury — or the knights' gift"},
+  {c:"43",n:"Dragontooth Dagger",u:"Ethradir",how:"Argynvost's lair"},
+  {c:"44",n:"Mithral Half Plate",u:"Ireena",how:"A fallen knight"},
+  {c:"73",n:"Frost Brand Rapier",u:"Barry",how:"The armoury, above the Order's shield"}],
+ events:["Light the beacon — Argynvost's skull is in the castle","The knights rest; one rides with them","Madam Eva's last message: she becomes their ally"],
+ fight:"Only if they fight Vladimir: 9,700 XP, Moderate — and the revenants come back.",
+ brides:[]},
+{id:"amber", short:"Amber", name:"Tsolenka Pass and the Amber Temple", lvl:"10–11", kind:"main",
+ doc:["Future Possible · The Amber Temple","Items · Tier 3"],
+ sub:"Dark gifts; Ludmilla's deal",
+ who:["The roc — Tsolenka Pass|roc","Kasimir Velikov|Kasimir","The vestiges|vestige","Flameskulls, an arcanaloth|flameskull","Ludmilla, reading in the library|Ludmilla"],
+ find:[
+  {c:"51",n:"Dragon Scale Mail",u:"Fedra",how:"Search the temple"},
+  {c:"52",n:"Cloak of Displacement",u:"Ethradir",how:"Search the temple"},
+  {c:"53",n:"Pearl of Power",u:"Cassian",how:"Search the temple"},
+  {c:"54",n:"Demon Armor (+ curse)",u:"Ireena",how:"A trap — it looks made for her",t:"enemy"},
+  {c:"65",n:"Illusionist's Bracers",u:"Cassian",how:"Ludmilla wears them — destroy her",t:"enemy"}],
+ events:["A dark gift for each: Fedra's ashes, Barry's barlgura, Cassian becoming Viktor, why Ireena can't die","Ludmilla's deal: leave Ireena behind, learn where Strahd sleeps"],
+ fight:"The roc 7,200 (Moderate at 10, Low at 11) · arcanaloth and 2 flameskulls 10,600 (High at 10, Moderate at 11) · Ludmilla and 2 flameskulls 6,100 if they refuse her and fight.",
+ brides:[["lud","The deal. “Leave the girl behind. I'll tell you where he sleeps — and the other two stay in their coffins.”"]]},
+{id:"castle", short:"Castle", name:"Castle Ravenloft", lvl:"12", kind:"main",
+ doc:["Future Possible · Castle Ravenloft","Strahd sheet","Brides sheet"],
+ sub:"The final fight; the chapel wedding",
+ who:["Strahd|Strahd","Rahadin|Rahadin","The brides — whoever is left|bride","Gertruda, Cyrus Belview|Gertruda","The Heart of Sorrow|Heart of Sorrow"],
+ find:[
+  {c:"57",n:"Ring of Protection",u:"Barry",how:"On Anastrasya's hand — it drops wherever she's destroyed, even in Vallaki",t:"enemy"},
+  {c:"58",n:"Keyholes Dagger — Ten",u:"Barry",how:"The same dagger, grown"},
+  {c:"59",n:"Bloodwell Vial +2 — Viktor's",u:"Cassian",how:"Viktor's old things"},
+  {c:"56",n:"Nine Lives Stealer",u:"Barry",how:"In Volenta's coffin — her trophy",t:"enemy"},
+  {c:"65",n:"Illusionist's Bracers",u:"Cassian",how:"On Ludmilla — they drop wherever she's destroyed",t:"enemy"},
+  {c:"—",n:"The brides' jewellery (980 gp), the key to Strahd's study, three letters",u:"Party",how:"On the brides"},
+  {c:"—",n:"The treasury — 5,000 gp and more",u:"Gold",how:"Search"}],
+ events:["The final fight — the Tarokka says where he waits","The brides: their tomb by day, through the walls by night","The chapel wedding, if Strahd ever takes Ireena — 10 rounds to stop it"],
+ fight:"Strahd in his lair 15,000 (Moderate on paper, harder in practice) · + Rahadin 20,900 (High) · + the brides 27,800 (above High) — keep them apart.",
+ brides:[["lud","No deal: “Nothing personal.” With the deal, her coffin is empty."],["ana","“You brought her home. How thoughtful.”"],["vol","“My turn.”"]]}
+];
+
+const THREADS = [
+{name:"Ludmilla", tone:"lud", note:"Eldest bride · the red veil", at:{road:"In the carriage",vallaki:"The stolen bones; the church roof",dinner:"Serves the wine",amber:"Her deal",castle:"The tomb"}},
+{name:"Anastrasya", tone:"ana", note:"The favourite · gold crown", at:{road:"In the carriage",vallaki:"Wachterhaus — dinner and the cellar",dinner:"Plays hostess",krezk:"Her raid",castle:"The tomb"}},
+{name:"Volenta", tone:"vol", note:"Youngest bride · skull mask", at:{road:"In the carriage",vallaki:"Festival night",dinner:"Sits too close",roadwest:"Her hunt",castle:"The tomb"}},
+{name:"Miranda and the hags", tone:"ink", note:"Bella and Offalia", at:{mill:"The coven's mill",vallaki:"Offalia's attack; the ribbon; the news",roadwest:"Bella's offer",berez:"The rescue"}},
+{name:"Madam Eva", tone:"ink", note:"A message after each item", at:{winery:"After the Tome",vrtower:"After the Sunsword",krezk:"After the Holy Symbol",argyn:"After the Icon — ally",castle:"Where Strahd waits"}},
+{name:"Tarokka items", tone:"ink", note:"The four they need", at:{winery:"Tome of Strahd",vrtower:"Sunsword",krezk:"Holy Symbol",argyn:"Icon of Ravenloft"}},
+{name:"Ireena", tone:"ink", note:"Fighter 3 (4 at party level 7); can't die", at:{road:"Strahd's first words",vallaki:"Izek — her real brother",dinner:"The dance",vrtower:"The Sunsword",krezk:"The Blessed Pool",berez:"Lysaga wants her dead",amber:"Why she can't die",castle:"The wedding"}},
+{name:"Cassian and Viktor", tone:"ink", note:"The shadow, when he's alone", at:{mill:"Viktor's receipt",road:"“Viktor.”",dinner:"His grandfather's chair",amber:"A vestige offers him Viktor",castle:"Viktor's vial"}},
+{name:"Fedra's ashes", tone:"ink", note:"Bone, warmth, a pulse, a voice", at:{road:"“He's coming along nicely.”",amber:"Finish them, or scatter them"}},
+{name:"Barry's demon", tone:"ink", note:"The barlgura inside him", at:{road:"Strahd names it",yester:"The Gulthias tree",amber:"The barlgura's offer"}},
+{name:"Ethradir", tone:"ink", note:"His promise to Miranda", at:{mill:"His mother's contract",road:"“Buying wives.”",vallaki:"The ribbon",roadwest:"Dreams of Miranda",berez:"The promise kept, or broken"}}
+];
+
+const PARTY = ["Fedra","Barry","Ethradir","Cassian","Ireena"];
+
+(function(){
+  "use strict";
+  const byId = Object.fromEntries(STOPS.map(s => [s.id, s]));
+  const BR = {lud:"Ludmilla", ana:"Anastrasya", vol:"Volenta"};
+  const $ = sel => document.querySelector(sel);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const norm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[’']/g,"'");
+  const STOPWORDS = new Set(["the","and","with","for","from","his","her","its","who","what","card","lady","father","madam","burgomaster","into","one","two"]);
+  const narrowMQ = window.matchMedia("(max-width: 860px)");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const flow = $("#flow"), detail = $("#detail"), detailCol = $("#detailCol");
+  const q = $("#q"), results = $("#results"), clearBtn = $("#clear");
+  let current = null;
+
+  const split = w => { const i = w.indexOf("|"); return i < 0 ? [w, w.split(" — ")[0]] : [w.slice(0, i), w.slice(i + 1)]; };
+  const dots = s => s.brides.map(([k]) => `<i class="bd ${k}" title="${BR[k]}" aria-label="${BR[k]}">${BR[k][0]}</i>`).join("");
+  const tagFor = t => ({tarokka:'<span class="tag tarokka">Tarokka</span>', hold:'<span class="tag hold">Held back</span>', shop:'<span class="tag shop">Shop</span>', enemy:'<span class="tag enemy">Enemy</span>'}[t] || "");
+
+  function stopButton(s, side){
+    return `<button class="stop" type="button" data-id="${s.id}" aria-current="false">`
+      + `<span class="lvl">${esc(s.lvl)}</span><span class="nm">${esc(s.name)}</span><span class="dots">${dots(s)}</span>`
+      + (side ? `<span class="side-tag">Side trip</span>` : "")
+      + `<span class="sub">${esc(s.sub)}</span></button>`;
+  }
+
+  // ---- the route ----
+  STOPS.filter(s => s.kind !== "side").forEach(s => {
+    const li = document.createElement("li");
+    li.className = "row" + (s.kind === "event" ? " event" : "");
+    li.dataset.row = s.id;
+    let h = `<span class="marker" aria-hidden="true"></span>` + stopButton(s, false);
+    STOPS.filter(x => x.kind === "side" && x.parent === s.id).forEach(x => { h += `<div class="side">${stopButton(x, true)}</div>`; });
+    li.innerHTML = h;
+    flow.appendChild(li);
+  });
+
+  // ---- detail ----
+  function renderDetail(s){
+    const th = THREADS.filter(t => t.at[s.id]);
+    const who = s.who.map(w => { const [label, key] = split(w); return `<button class="chip" type="button" data-q="${esc(key)}" title="Find everywhere this appears">${esc(label)}</button>`; }).join("");
+    const items = s.find.map(f => `<li><span class="cno">${esc(f.c)}</span><span class="iname">${esc(f.n)}${tagFor(f.t)}</span><span class="user">${esc(f.u)}</span><span class="how">${esc(f.how)}</span></li>`).join("");
+    const kindPill = s.kind === "side" ? '<span class="pill">Side trip</span>' : s.kind === "event" ? '<span class="pill">On the road</span>' : "";
+    detail.innerHTML =
+      `<div class="d-head"><h3>${esc(s.name)}</h3><span class="pill lvl">Level ${esc(s.lvl)}</span>${kindPill}${s.doc.map(d => `<span class="doc">${esc(d)}</span>`).join("")}</div>`
+      + `<div class="d-sec"><h4>Who's there</h4><div class="chips">${who}</div></div>`
+      + (s.brides.length ? `<div class="d-sec"><h4>The brides here</h4><div class="bride-lines">${s.brides.map(([k, t]) => `<div class="bride-line"><i class="bd ${k}" aria-hidden="true">${BR[k][0]}</i><div><b>${BR[k]}.</b> ${esc(t)}</div></div>`).join("")}</div></div>` : "")
+      + `<div class="d-sec"><h4>What happens</h4><ul class="events">${s.events.map(e => `<li>${esc(e)}</li>`).join("")}</ul></div>`
+      + (s.find.length ? `<div class="d-sec"><h4>What they find · who uses it</h4><ul class="items">${items}</ul></div>` : "")
+      + (s.fight ? `<div class="d-sec"><h4>How hard</h4><div class="fight">${esc(s.fight)}</div></div>` : "")
+      + (th.length ? `<div class="d-sec"><h4>Threads through here</h4><div class="touch">${th.map(t => `<span class="t"><b>${esc(t.name)}:</b> ${esc(t.at[s.id])}</span>`).join("")}</div></div>` : "");
+  }
+
+  function placeDetail(){
+    if (narrowMQ.matches && current){
+      const btn = flow.querySelector(`.stop[data-id="${current}"]`);
+      const li = btn && btn.closest("li.row");
+      if (li && detail.parentElement !== li) li.appendChild(detail);
+    } else if (detail.parentElement !== detailCol){
+      detailCol.appendChild(detail);
+    }
+  }
+
+  function select(id, opts){
+    const s = byId[id]; if (!s) return;
+    current = id;
+    flow.querySelectorAll(".stop").forEach(b => b.setAttribute("aria-current", b.dataset.id === id ? "true" : "false"));
+    flow.querySelectorAll("li.row").forEach(li => li.classList.toggle("sel", li.dataset.row === id));
+    document.querySelectorAll("#matrix [data-col]").forEach(c => c.classList.toggle("hl", c.dataset.col === id));
+    renderDetail(s);
+    placeDetail();
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
+    if (opts && opts.scroll){
+      const btn = flow.querySelector(`.stop[data-id="${id}"]`);
+      if (btn) btn.scrollIntoView({block: narrowMQ.matches ? "start" : "center", behavior: reduceMotion ? "auto" : "smooth"});
+    }
+  }
+
+  // ---- search ----
+  const INDEX = [];
+  STOPS.forEach(s => {
+    INDEX.push({s, kind:"Stop", label:s.name, text:s.name + " " + s.sub});
+    s.who.forEach(w => { const [label] = split(w); INDEX.push({s, kind:"Person", label, text:label}); });
+    s.find.forEach(f => INDEX.push({s, kind:"Item", c:f.c, label:(/^\d/.test(f.c) ? f.c + " · " : "") + f.n + " — " + f.u, text:f.n + " " + f.u + " " + f.how}));
+    s.events.forEach(e => INDEX.push({s, kind:"Event", label:e, text:e}));
+    s.brides.forEach(([k, t]) => INDEX.push({s, kind:"Bride", label:BR[k] + ": " + t, text:BR[k] + " bride " + t}));
+    if (s.fight) INDEX.push({s, kind:"Fight", label:s.fight, text:s.fight});
+  });
+  THREADS.forEach(t => Object.keys(t.at).forEach(id => INDEX.push({s:byId[id], kind:"Thread", label:t.name + ": " + t.at[id], text:t.name + " " + t.note + " " + t.at[id]})));
+  INDEX.forEach(e => { e.n = norm(e.text); });
+  const order = Object.fromEntries(STOPS.map((s, i) => [s.id, i]));
+
+  function search(raw){
+    const query = norm(raw).trim();
+    if (!query) return null;
+    const num = query.match(/^(?:card\s*)?#?(\d{1,2})$/);
+    if (num){
+      const c = num[1].padStart(2, "0");
+      return INDEX.filter(e => e.kind === "Item" && e.c === c);
+    }
+    let hits = INDEX.filter(e => e.n.includes(query));
+    if (!hits.length){
+      const toks = query.split(/[^a-z0-9]+/).filter(w => w.length >= 3 && !STOPWORDS.has(w));
+      if (!toks.length) return [];
+      const scored = INDEX.map(e => ({e, sc: toks.filter(t => e.n.includes(t)).length})).filter(x => x.sc > 0);
+      const best = Math.max(0, ...scored.map(x => x.sc));
+      hits = scored.filter(x => x.sc === best).map(x => x.e);
+    }
+    const rank = {Stop:0, Person:1, Item:2, Bride:3, Event:4, Thread:5, Fight:6};
+    return hits.sort((a, b) => order[a.s.id] - order[b.s.id] || rank[a.kind] - rank[b.kind]);
+  }
+
+  function runSearch(){
+    const hits = search(q.value);
+    clearBtn.hidden = !q.value;
+    if (hits === null){
+      results.hidden = true; results.innerHTML = "";
+      flow.classList.remove("searching");
+      flow.querySelectorAll(".stop.hit").forEach(b => b.classList.remove("hit"));
+      return;
+    }
+    const ids = new Set(hits.map(h => h.s.id));
+    flow.classList.add("searching");
+    flow.querySelectorAll(".stop").forEach(b => b.classList.toggle("hit", ids.has(b.dataset.id)));
+    results.hidden = false;
+    if (!hits.length){ results.innerHTML = `<li class="none">Nothing matches “${esc(q.value)}”. Try a surname, an item name or a card number.</li>`; return; }
+    const shown = hits.slice(0, 18);
+    results.innerHTML = shown.map(h => `<li><button type="button" data-go="${h.s.id}"><span class="kind">${h.kind}</span><span class="r-what">${esc(h.label)}</span><span class="r-where">${esc(h.s.name)} · level ${esc(h.s.lvl)}</span></button></li>`).join("")
+      + (hits.length > shown.length ? `<li class="none">…and ${hits.length - shown.length} more. The highlighted stops show them all.</li>` : "");
+  }
+  function setQuery(v){ q.value = v; runSearch(); q.focus({preventScroll:true}); }
+
+  q.addEventListener("input", runSearch);
+  q.addEventListener("keydown", e => { if (e.key === "Escape"){ setQuery(""); } });
+  clearBtn.addEventListener("click", () => setQuery(""));
+
+  // ---- matrix ----
+  const matrix = $("#matrix");
+  matrix.innerHTML = `<thead><tr><th scope="col"><span class="sr" style="position:absolute;left:-9999px">Thread</span></th>${STOPS.map(s => `<th scope="col" data-col="${s.id}"><button type="button" data-go="${s.id}" title="${esc(s.name)}">${esc(s.short)}</button></th>`).join("")}</tr></thead>`
+    + `<tbody>${THREADS.map(t => `<tr><th scope="row">${esc(t.name)}<small>${esc(t.note)}</small></th>${STOPS.map(s => t.at[s.id]
+        ? `<td data-col="${s.id}"><button type="button" class="${t.tone}" data-go="${s.id}" title="${esc(t.name + " · " + s.name + ": " + t.at[s.id])}" aria-label="${esc(t.name + " at " + s.name + ": " + t.at[s.id])}"></button></td>`
+        : `<td data-col="${s.id}"></td>`).join("")}</tr>`).join("")}</tbody>`;
+
+  // ---- who gets what ----
+  const buckets = {}; PARTY.concat(["Shared"]).forEach(p => buckets[p] = []);
+  STOPS.forEach(s => s.find.forEach(f => {
+    if (!/^\d/.test(f.c)) return;
+    const names = PARTY.filter(p => f.u.includes(p));
+    if (names.length) names.forEach(p => buckets[p].push({f, s}));
+    else if (/Party|Anyone/.test(f.u)) buckets.Shared.push({f, s});
+  }));
+  $("#partyGrid").innerHTML = PARTY.concat(["Shared"]).map(p => `<div class="pcard"><h3>${p === "Shared" ? "Anyone · the party" : p}</h3><ul>${buckets[p].map(({f, s}) =>
+    `<li><button type="button" data-go="${s.id}"><span class="cno">${esc(f.c)}</span><span>${esc(f.n.replace(/ — \d.*$/, ""))}${tagFor(f.t)}</span><span class="where">${esc(s.name)} · level ${esc(s.lvl)}</span></button></li>`).join("")}</ul></div>`).join("");
+
+  // ---- clicks ----
+  document.addEventListener("click", e => {
+    const stop = e.target.closest(".stop[data-id]");
+    if (stop){ select(stop.dataset.id, {scroll: false}); if (narrowMQ.matches) stop.scrollIntoView({block:"start", behavior: reduceMotion ? "auto" : "smooth"}); return; }
+    const go = e.target.closest("[data-go]");
+    if (go){ select(go.dataset.go, {scroll: true}); return; }
+    const chip = e.target.closest(".chip[data-q]");
+    if (chip){ setQuery(chip.dataset.q); if (narrowMQ.matches) q.scrollIntoView({block:"start", behavior: reduceMotion ? "auto" : "smooth"}); }
+  });
+  (narrowMQ.addEventListener ? narrowMQ.addEventListener("change", placeDetail) : narrowMQ.addListener(placeDetail));
+
+  const start = (location.hash || "").slice(1);
+  select(byId[start] ? start : "mill", {scroll: false});
+})();
+
+</script>
+
+</body></html>
