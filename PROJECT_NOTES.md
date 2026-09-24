@@ -204,3 +204,17 @@ or change a document are listed here.
 - Possible omissions (D-6): 4 potions of invulnerability, Vladimir's +2 greatsword, a 250 gp platinum holy symbol.
 - OPTIONAL (touches C-11): the book gives +1 AC and saves once the beacon is lit.
 - Maps not in `Maps/`: Map 7.1 and 7.2 (Argynvostholt; 7.2 includes the third floor).
+
+### Saidra d'Honaire — task E (done 2026-09-24)
+
+Files: `skill/curse-of-strahd/references/book/saidra-dhonaire.md` (book layer) and
+`readers/saidra_integration_options.md` (options). Book: Darklord of Dementlieu
+(Port-a-Lucine), undead "phantom duchess", CR 9; weekly Grand Masquerade; *Truth or
+Die*; senses lies; Tarokka aligned card Charlatan, opposed Seer. No direct link to
+Strahd or Barovia in the book.
+
+**NEW DECISION D-9 — how Saidra enters the campaign** (none replaces an NPC, homebrew included):
+- **A. The Charlatan card:** Eva's message after the Tome arrives as the Charlatan; later Ezmerelda names it as Port-a-Lucine's card. Lore only.
+- **B. The brooch and a second invitation (agent's recommendation):** Ireena gets card 27 (Masquerader's Brooch) as now; next dawn Saidra's *Invitation* power leaves a mask and a masquerade invitation by her bed. Inert while Strahd holds the borders; a sequel hook after he falls. No scene, no fight, no line changed.
+- **C. Guest at Strahd's dinner:** she cries "Impostor!" and Strahd restrains her (his word). Crowds the dinner; overlaps with Anastrasya as hostess.
+- **D. One night in Port-a-Lucine:** a side trip through the Mists after Van Richten's Tower. Largest expansion; no campaign reason to go.

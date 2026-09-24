@@ -89,11 +89,8 @@
   - Strahd allows it because they entertain him (NPC card 01).
   - They play RHW's Grand Masquerade (p. 76), and the Mists return them at dawn.
 - **What she wants:** a flawless ball, and impostors unmasked.
-- **Party gets:**
-  - Renown rewards: at 6 or more, her compliment and noble contacts.
-  - Uses for card 27 (armour disguised as a gown passes "Dressed to Kill") and card 03 Glamerweave. Whether card 26 beats her Lie Detector is a DM call.
-  - Not the book's 600 XP: our levels are milestones (FP › 4 › *Levels*).
-- **Touches:** no stop replaced. But Ireena leaves Barovia or waits behind, which strains "travels with the party". Volenta's three nights, Bella's offer and Ethradir's dreams of Miranda pause.
+- **Party gets:** at Renown 6 or more, her compliment and noble contacts. Card 27 finds a use (armour disguised as a gown passes "Dressed to Kill"), and so does card 03. Whether card 26 beats her Lie Detector is a DM call. The book's 600 XP doesn't apply, because levels are milestones (FP › 4).
+- **Touches:** no stop replaced. But Ireena leaves Barovia or waits behind ("travels with the party"), and Volenta's three nights, Bella's offer and Ethradir's Miranda dreams pause.
 - **Edits:**
   - FP › 1 (*Most likely order*, *At a glance*, *Major events*, *Difficulty*) and a new FP › 2 section.
   - Brides › p. 5 *Depending on what the party does*.
