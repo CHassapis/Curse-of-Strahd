@@ -321,10 +321,11 @@ Magic items are marked **[M]**; **[T]** = a Tarokka spot (Ch 1 treasure location
 - **Ch 2:** Barovian lore on Krezk and the wine. The raise-dead madness rule. The Raven River crossroads (area R) signpost points to Krezk and Tsolenka southwest and Berez southeast. Barovian scarecrows are Lysaga's work.
 - **Ch 3 E5f:** Donavich suggests taking Ireena to the abbey, unaware it has fallen.
 - **Ch 4:**
-  - K78 teleport destinations: S17 (indigo) and T4 (violet).
+  - K78 Brazier Room (p. 82) teleport destinations: S17 (indigo) and T4 (violet).
+  - K62 (p. 76): Cyrus Belview, the castle's mongrelfolk servant, shares the abbey family's name.
   - K84 crypt 11: Tasha Petrovna's holy symbol → the S7 ring.
   - K84 crypt 6: **Saint Markovia's thighbone** (App C), the book's Markovia relic, which is in the castle and not the abbey.
-  - The book's brides are vampire spawn (K88).
+  - The book's three brides are vampire spawn in Strahd's tomb (K86, p. 93).
 - **Ch 5 N3p:** Lydia Petrovna's gown.
 - **Ch 6:** the Old Bonegrinder megaliths match the U6 menhirs. The book never links Lysaga to the Bonegrinder hags.
 - **Ch 7:** the Argynvostholt beacon can be seen from Krezk and Berez; the Lost Battlefield reveals Argynvostholt.

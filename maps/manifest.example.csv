@@ -1,0 +1,10 @@
+order,set,location,level,title,dm_file,player_file,redact,crop,keep,notes
+10,map,Old Bonegrinder,O1,Roof & Side Elevation,bonegrinder_sheet_dm.jpg,bonegrinder_sheet_player.jpg,,"0,0,2400,380","1000,1480,140,120",Title/compass panel of the sheet; measure your own file's pixel coordinates
+20,map,Old Bonegrinder,O2,Bone Mill,bonegrinder_sheet_dm.jpg,bonegrinder_sheet_player.jpg,,"0,380,1200,635","0,0,900,140;1000,1480,140,120","this quadrant has a trapdoor 'T' in the DM sheet - covered by the crop, not by redact"
+30,map,Old Bonegrinder,O3,Grinder Floor,bonegrinder_sheet_dm.jpg,bonegrinder_sheet_player.jpg,,"1200,380,1200,635","0,0,900,140;1000,1480,140,120",
+40,map,Old Bonegrinder,O4,Cellar,bonegrinder_sheet_dm.jpg,bonegrinder_sheet_player.jpg,,"0,1015,1200,465","0,0,900,140;1000,1480,140,120",
+50,map,Vallaki,V1,Vallaki Town,vallaki_dm.jpg,vallaki_player.jpg,,,,plain single-image map - no crop/keep needed
+60,map,Death House,D1,Secret Room,death_house_dm.jpg,,"640,410,260,190;1500,900,260,190",,,no clean player file exists - built from dm_file by redacting the room letter and trap marker
+70,map,Coffin Maker's Shop,C1,Workshop (DM only for now),coffinmaker_dm.jpg,,,,,"left out of PLAYER_MAPS.pdf until a player_file or redact is added - the tool will warn about this row"
+80,picture,,,Rictavio's Wagon,,wagon.jpg,,,,player-facing picture - printed after all maps under "To show the players"
+90,picture,,,Night Street,night_street_dm.jpg,night_street.webp,,,,dm_file set too - also appears at the end of DM_MAPS.pdf

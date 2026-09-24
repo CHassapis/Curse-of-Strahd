@@ -176,7 +176,7 @@ Base XP from the MM and App D CRs; there is no encounter multiplier in this book
   - General rules the event doesn't repeat: Kasimir is neutral, so accepting means a **DC 12 Charisma save or he turns evil**, and he takes on a corpselike look. Anyone returned to life after 24+ hours dead gains an **indefinite madness** (Ch 2, Resurrection Madness, p. 24).
 
 ## Secrets [DM]
-- **Strahd's origin** (pp. 181–182). Exethanter sensed a man of destiny in Strahd; the vestiges sensed a darkness greater than their own. Strahd made his pact with them, sealed it in Sergei's blood, became a vampire, and the Dark Powers turned his land into a prison. The Dark Powers were born here and feed on him, which is why they won't let him go. Compare the Intro (p. 10: a pact with the Dark Powers for immortality, sealed by killing Sergei and drinking his blood) and the *Tome of Strahd* (App F p. 252: "a pact with death, a pact of blood"; he now sleeps far below the castle).
+- **Strahd's origin** (pp. 181–182). Exethanter sensed a man of destiny in Strahd; the vestiges sensed a darkness greater than their own. Strahd made his pact with them, sealed it in Sergei's blood, became a vampire, and the Dark Powers turned his land into a prison. The Dark Powers were born here and feed on him, which is why they won't let him go. Compare Ch 1, The Vampire's History (p. 9: a pact with the Dark Powers for immortality, sealed by killing Sergei and drinking his blood) and the *Tome of Strahd* (App F p. 252: "a pact with death, a pact of blood"; he now sleeps far below the castle).
 - **The Vampyr vestige (X42 W)** mirrors Strahd's story: killing a humanoid who loved him (Sergei) and drinking the blood, then a violent death at the hands of those who hated him (the guards' arrows). *Inference:* the book never says outright that Strahd took this gift, but it is the obvious reading. The *Tome* also has him call himself "Vampyr".
 - **Patrina led Strahd here.** She tempted him with a vault holding the secret of immortality, and Rahadin hunted for a rival woman while Strahd explored it (App D, Rahadin, p. 236). She told Kasimir the temple is where Strahd made his pact (App D p. 233).
 - Strahd, disguised as Vasili von Holtz, brought forbidden lore from the temple to the Abbot to create the mongrelfolk (App D p. 225).
@@ -213,4 +213,12 @@ Base XP from the MM and App D CRs; there is no encounter multiplier in this book
 - Ch 2: Resurrection Madness and Souls and Shells (pp. 24–25; a soul in Barovia is reborn in a newborn, which is why Ireena looks like Tatyana); area X (p. 40); area M, the Mad Mage (p. 39). None of the vestiges restores a mind, and Savnok's gift is itself a *mind blank*.
 - Epilogue, Consorts Unleashed (p. 208): Patrina's future.
 - App D: Kasimir (pp. 232–233), Rahadin (pp. 236–237), Abbot (p. 225), Barovian witch and broom (pp. 226, 229). App F: *Tome of Strahd* (p. 252).
-- Tarokka treasure spots here: X5a, X20, X40 (card reading, Ch 1).
+- Tarokka treasure spots here: X5a, X20, X40 (card reading, Ch 1). Ch 1 (p. 9): Strahd is always met where the card reading says, unless he has been forced into his tomb.
+
+### Campaign touch points — pointers only ([CAMPAIGN]; details in `readers/reader6b_amber_temple_report.md`)
+- X30 library: Ludmilla's deal scene (Future Possible, The Amber Temple). The brides don't appear in Ch 13; this is a campaign scene.
+- X42 east, Zhudun: Kasimir's goal (book) and a possible anchor for Fedra's ashes. The ashes belong to Fedra's boyfriend: [CAMPAIGN] homebrew.
+- The vestiges: Cassian's offer to become Viktor Ivanovich ([CAMPAIGN] homebrew NPC; shadow demon with his face).
+- Barry's barlgura: [CAMPAIGN] homebrew; there is no demon in Ch 13.
+- Ireena "bound by the Dark Powers": a campaign reveal that builds on pp. 181–182 and Ch 2 p. 25.
+- Ludmilla's history (foundling from Amn; the Vilisevic family of Vallaki; found by Rahadin near the temple 200 years ago): [CAMPAIGN] homebrew, laid over the book's plain vampire-spawn bride.
